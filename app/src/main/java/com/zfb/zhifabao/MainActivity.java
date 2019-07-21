@@ -1,7 +1,6 @@
 package com.zfb.zhifabao;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import com.zfb.zhifabao.common.app.Activity;
 
 /**
  * 这是开发分支，用于智法宝开发
