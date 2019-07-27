@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_200"
+    tools:context=".MainActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:elevation="@dimen/len_2"
+        android:outlineProvider="bounds"
+        tools:targetApi="lollipop">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/len_16">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:layout_margin="@dimen/len_12"
+                android:layout_marginStart="@dimen/font_18"
+                android:backgroundTint="@color/black"
+                android:gravity="center"
+                android:padding="@dimen/len_4"
+                android:text="@string/App_Name"
+                android:textAppearance="@style/TextAppearance.Title"
+                android:textSize="18sp"
+                tools:ignore="RtlHardcoded" />
+
+            <FrameLayout
+                android:layout_width="240dp"
+                android:layout_height="@dimen/len_32"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/len_20"
+                android:background="@drawable/edit_shap"
+                android:inputType="text"
+                android:padding="@dimen/len_6"
+                android:textSize="@dimen/font_14">
+
+                <ImageView
+                    android:layout_width="@dimen/len_20"
+                    android:layout_height="@dimen/len_20"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="@dimen/len_48"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_search" />
+
+                <TextView
+                    android:id="@+id/tv_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@string/hint"
+                    android:textColor="#B0B0B0"
+                    android:textSize="@dimen/font_14" />
+            </FrameLayout>
+
+            <ImageView
+                android:layout_width="@dimen/len_40"
+                android:layout_height="@dimen/len_40"
+                android:layout_gravity="end|center_vertical"
+                android:background="@null"
+                android:contentDescription="@string/app_name"
+                android:padding="@dimen/len_2"
+                android:paddingEnd="@dimen/len_12"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_history_search"
+                android:tint="@color/white"
+                tools:ignore="RtlSymmetry" />
+        </FrameLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="86dp"
+        android:layout_margin="@dimen/len_12"
+        android:background="@drawable/edit_shap"
+        android:baselineAligned="false"
+        android:elevation="@dimen/len_12"
+        android:orientation="horizontal"
+        android:outlineProvider="bounds"
+        app:layout_anchor="@id/appbar"
+        app:layout_anchorGravity="bottom|center"
+        tools:targetApi="LOLLIPOP">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/len_40"
+                android:layout_height="@dimen/len_40"
+                android:layout_gravity="top|center_horizontal"
+                android:layout_marginTop="@dimen/len_12"
+                android:contentDescription="@string/app_name"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_contract" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="@dimen/len_8"
+                android:text="@string/contract"
+                android:textColor="#111111" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/len_40"
+                android:layout_height="@dimen/len_40"
+                android:layout_gravity="top|center_horizontal"
+                android:layout_marginTop="@dimen/len_12"
+                android:contentDescription="@string/app_name"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_toexamine" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="@dimen/len_8"
+                android:text="@string/toexamine"
+                android:textColor="#111111" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/len_40"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|center_horizontal"
+                android:layout_marginTop="@dimen/len_12"
+                android:contentDescription="@string/app_name"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_occupation" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="@dimen/len_8"
+                android:text="@string/occupation"
+                android:textColor="#111111" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/len_40"
+                android:layout_height="@dimen/len_40"
+                android:layout_gravity="top|center_horizontal"
+                android:layout_marginTop="@dimen/len_12"
+                android:contentDescription="@string/app_name"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_sychology" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="@dimen/len_8"
+                android:text="@string/sychology"
+                android:textColor="#111111" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="275dp"
+        app:layout_anchor="@id/appbar"
+        app:layout_anchorGravity="center_horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/len_12"
+            android:layout_weight="1"
+            android:drawableBottom="@drawable/ic_long_strip"
+            android:gravity="center"
+            android:text="@string/all_contract"
+            android:textColor="#111111"
+            android:textSize="@dimen/font_14" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/len_12"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/occupation"
+            android:textColor="#111111"
+            android:textSize="@dimen/font_14" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/len_12"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/sychology"
+            android:textColor="#111111"
+            android:textSize="@dimen/font_14" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/lay_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/len_12"
+        android:layout_marginTop="@dimen/len_88"
+        android:layout_marginEnd="@dimen/len_12"
+        android:layout_marginBottom="@dimen/len_4"
+        android:background="@drawable/content_shap"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/app_name"
+            android:scaleType="centerInside"
+            android:src="@drawable/none" />
+    </FrameLayout>
+</android.support.design.widget.CoordinatorLayout>
