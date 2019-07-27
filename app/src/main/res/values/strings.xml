@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">ZhiFaBao</string>
+    <string name="App_Name">智法宝</string>
+    <string name="sychology">心理测评</string>
+    <string name="occupation">职业测评</string>
+    <string name="toexamine">合同审核</string>
+    <string name="contract">新建合同</string>
+    <string name="hint">查员工/公司</string>
+    <string name="all_contract">所有合同</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_iteam_my_title">我的</string>
 </resources>

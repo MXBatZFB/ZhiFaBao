@@ -2,7 +2,12 @@ package com.zfb.zhifabao.common.app;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+
+import java.util.List;
+
+import butterknife.ButterKnife;
 
 public abstract class Activity extends AppCompatActivity {
 
@@ -13,13 +18,13 @@ public abstract class Activity extends AppCompatActivity {
         //在界面初始化之前初始化窗口
         initWindows();
 
-        if (inintArgs(getIntent().getExtras())){
+        if (initArgs(getIntent().getExtras())){
             //设置当前Activity的视图
             setContentView(getContentLayoutId());
             //初始化控件
-            inintWidget();
+            initWidget();
             //初始化数据
-            inintData();
+            initData();
         }else{
             finish();
         }
@@ -36,7 +41,7 @@ public abstract class Activity extends AppCompatActivity {
     /**
      * 初始化数据
      */
-    protected void inintData() {
+    protected void initData() {
 
     }
 
@@ -49,17 +54,18 @@ public abstract class Activity extends AppCompatActivity {
     /**
      * 初始化控件
      */
-    protected  void inintWidget(){
-
+    protected  void initWidget(){
+        ButterKnife.bind(this);
+      //setStatuTrans();
 
     }
 
     /**
      * 初始化参数
-     * @param Bundle
-     * @return
+     * @param  Bundle Bundle
+     * @return boolean
      */
-    protected boolean inintArgs(Bundle Bundle){
+    private boolean initArgs(Bundle Bundle){
         return true;
     }
 
@@ -73,6 +79,17 @@ public abstract class Activity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+
+        List<android.support.v4.app.Fragment> fragments = getSupportFragmentManager().getFragments();
+        if (fragments.size() > 0){
+            for (Fragment fragment:fragments){
+                if (fragment instanceof com.zfb.zhifabao.common.app.Fragment){
+                    if (((com.zfb.zhifabao.common.app.Fragment) fragment).onBackPressed()){
+                        return;
+                    }
+                }
+            }
+        }
 
         super.onBackPressed();
         finish();
