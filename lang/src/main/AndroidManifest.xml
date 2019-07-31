@@ -1,1 +1,2 @@
-<manifest package="com.delong.lang" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zfb.zhifabao.lang" />

@@ -5,9 +5,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.SparseArray;
+import com.zfb.zhifabao.common.Common;
+import com.zfb.zhifabao.flags.account.CallbackOnRegister;
+import com.zfb.zhifabao.flags.account.MsgLoginFragment;
+import com.zfb.zhifabao.flags.account.RegisterFragment;
 
 @SuppressWarnings("ALL")
-public class NavHelper<T> {
+public class NavHelper<T> implements Common.Constance {
     private SparseArray<Tab<T>> tabs = new SparseArray<>();
     private Context mContext;
     private FragmentManager mFragmentManager;
@@ -40,7 +44,6 @@ public class NavHelper<T> {
             currentTab = tab;
             doTabChange(tab);
         }
-
     }
 
     private void doTabChange(Tab newTab) {
@@ -51,6 +54,13 @@ public class NavHelper<T> {
         if (newTab.fragment == null) {
             Fragment fragment = Fragment.instantiate(mContext, newTab.clx.getName());
             newTab.fragment = fragment;
+            if (newTab.extra.equals("MsgLoginFragment")) {
+                Fragment tmp = Fragment.instantiate(mContext, RegisterFragment.class.getName());
+                tabs.get(TO_REGISTER_FLAGS).fragment = tmp;
+                ((MsgLoginFragment) fragment).setOnRegisterListener((CallbackOnRegister) tmp);
+                transaction.add(containerId, tmp);
+                transaction.detach(tmp);
+            }
             transaction.add(containerId, fragment);
         } else {
             transaction.attach(newTab.fragment);

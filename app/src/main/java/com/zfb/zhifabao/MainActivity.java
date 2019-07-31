@@ -2,6 +2,8 @@ package com.zfb.zhifabao;
 
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -28,17 +30,23 @@ public class MainActivity extends Activity implements BottomNavigationView.OnNav
     @BindView(R.id.bottom_navigation)
     BottomNavigationView bottomNavigation;
 
+    public static void show(Context context) {
+        context.startActivity(new Intent(context,MainActivity.class));
+    }
+
     @Override
     protected int getContentLayoutId() {
         return R.layout.activity_main;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressWarnings("unchecked")
     @SuppressLint("ResourceType")
     @Override
     protected void initWidget() {
         super.initWidget();
         ButterKnife.bind(this);
+        setStatuTrans();
         mNavHelper = new NavHelper(this, getSupportFragmentManager(), R.id.fl_container);
         mNavHelper.add(R.id.action_home, new NavHelper.Tab(HomeFragment.class, R.string.menu_iteam_home_title))
                   .add(R.id.action_consult, new NavHelper.Tab(ConsultationFragment.class, R.string.menu_iteam_consult_title))
@@ -57,7 +65,8 @@ public class MainActivity extends Activity implements BottomNavigationView.OnNav
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(Color.TRANSPARENT);
-            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            //SYSTEM_UI_FLAG_LAYOUT_STABLE
         }
     }
 

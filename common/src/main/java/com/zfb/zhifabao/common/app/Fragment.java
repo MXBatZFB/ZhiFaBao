@@ -7,8 +7,6 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -19,7 +17,7 @@ public abstract class Fragment extends android.support.v4.app.Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        inintArgs(getArguments());
+        initArgs(getArguments());
     }
 
     @Nullable
@@ -28,7 +26,7 @@ public abstract class Fragment extends android.support.v4.app.Fragment {
         if (mRootView ==null){
             int layId = getContentLayoutId();
             View rootView = inflater.inflate(layId,container,false);
-            inintWidget(rootView);
+            initWidget(rootView);
             mRootView = rootView;
         }else{
             if (mRootView.getParent()!=null){
@@ -42,7 +40,7 @@ public abstract class Fragment extends android.support.v4.app.Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //当View创建完成时初始化数据
-        inintData();
+        initData();
     }
 
     /**
@@ -50,7 +48,8 @@ public abstract class Fragment extends android.support.v4.app.Fragment {
      * @param Bundle Bundle
      *
      */
-    protected void inintArgs(Bundle Bundle){
+    @SuppressWarnings("unused")
+    protected void initArgs(Bundle Bundle){
 
     }
 
@@ -63,14 +62,14 @@ public abstract class Fragment extends android.support.v4.app.Fragment {
     /**
      * 初始化数据
      */
-    private void inintData() {
+    private void initData() {
 
     }
 
     /**
      * 初始化控件
      */
-    protected  void inintWidget(View root){
+    protected  void initWidget(View root){
         //绑定ButterKnife 注解框架
        mUnbinder = ButterKnife.bind(this,root);
     }
@@ -78,7 +77,9 @@ public abstract class Fragment extends android.support.v4.app.Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mUnbinder.unbind();
+        if (mUnbinder!=null){
+            mUnbinder.unbind();
+        }
     }
 
     /**
@@ -89,6 +90,4 @@ public abstract class Fragment extends android.support.v4.app.Fragment {
     public boolean onBackPressed(){
         return false;
     }
-
-
 }
