@@ -1,6 +1,7 @@
 package com.zfb.zhifabao.common.factory.presenter.account;
 
 import android.text.TextUtils;
+
 import com.zfb.zhifabao.common.Common;
 import com.zfb.zhifabao.common.app.Application;
 import com.zfb.zhifabao.common.factory.Factory;
@@ -11,8 +12,10 @@ import com.zfb.zhifabao.common.factory.model.api.LoginModel;
 import com.zfb.zhifabao.common.factory.model.api.ResModel;
 import com.zfb.zhifabao.common.factory.model.api.ResultForLogin;
 import com.zfb.zhifabao.common.factory.presenter.BasePresenter;
+
 import net.qiujuer.genius.kit.handler.Run;
 import net.qiujuer.genius.kit.handler.runable.Action;
+
 import java.util.regex.Pattern;
 
 public class MsgLoginPresenter extends BasePresenter<MsgLoginContract.View>
@@ -43,15 +46,7 @@ public class MsgLoginPresenter extends BasePresenter<MsgLoginContract.View>
         } else if (code == null||code.length()!=6) {
             //提示输入正确的验证码
             view.showError(Application.getInstance().getString(R.string.data_account_code_error));
-//        } else if (password.length() < 6) {
-//            //提示密码，或者验证码格式不对
-//            view.showError(Application.getInstance().getString(R.string.data_accont_code_or_password_erro));
-//        } else if (password.length() > 6) {//大于6是密码,说明是密码 需要AECCBC加密
-//            //对密码进行加密操作
-//            password = AESCBCUtils.encrypt(password);
-//            //加密后直接登录
-//            goLogin(numberPhone, password);
-        } else if (code.length()==6){
+        } else {
             //说明是验证码，首先校验验证码
             //如果校验成功直接登录 失败则提示
            goLogin(numberPhone,code);
