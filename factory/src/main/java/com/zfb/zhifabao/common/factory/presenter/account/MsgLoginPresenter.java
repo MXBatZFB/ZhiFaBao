@@ -57,11 +57,11 @@ public class MsgLoginPresenter extends BasePresenter<MsgLoginContract.View>
      * 开始网络登录请求
      *
      * @param numberPhone 登录账号
-     * @param password    登录密码
+     * @param code    用户的得到的验证码
      */
-    private void goLogin(String numberPhone, String password) {
+    private void goLogin(String numberPhone, String code) {
         //创建Login请求的参数model
-        LoginModel model = new LoginModel(GRANT_TYPE, numberPhone, password, CLIENT_ID, CLIENT_SECRET);
+        LoginModel model = new LoginModel(GRANT_TYPE, numberPhone, code, CLIENT_ID, CLIENT_SECRET);
         //发起请求
         AccountHelper.login(model, this);
     }
