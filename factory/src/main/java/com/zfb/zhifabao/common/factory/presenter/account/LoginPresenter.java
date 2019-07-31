@@ -30,14 +30,14 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
         if (!checkMoblie(numberPhone)) {
             //提示手机号码不合法
             view.showError(Application.getInstance().getString(R.string.data_account_invalid_parameter_mobile));
-        } else if (password.length() < 6) {
+        } else if (password.length() <= 6) {
             //提示密码，或者验证码格式不对
             view.showError(Application.getInstance().getString(R.string.data_account_invalid_parameter_password));
-        } else if (password.length() > 6) {//大于6是密码,说明是密码 需要AECCBC加密
+        } else {//大于6是密码,说明是密码 需要AECCBC加密
             //对密码进行加密操作
             password = AESCBCUtils.encrypt(password);
-            //加密后直接登录
         }
+        //加密后直接登录
         //创建Login请求的参数model
         LoginModel model = new LoginModel(GRANT_TYPE, numberPhone, password, CLIENT_ID, CLIENT_SECRET);
         //发起请求
