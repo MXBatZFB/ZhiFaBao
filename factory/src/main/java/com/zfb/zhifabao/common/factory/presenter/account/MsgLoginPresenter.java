@@ -31,7 +31,7 @@ public class MsgLoginPresenter extends BasePresenter<MsgLoginContract.View>
      * 用户登录
      *
      * @param numberPhone 用户名
-     * @param code    密码
+     * @param code        密码
      */
     @Override
     public void login(String numberPhone, String code) {
@@ -43,13 +43,13 @@ public class MsgLoginPresenter extends BasePresenter<MsgLoginContract.View>
         if (!checkMoblie(numberPhone)) {
             //提示手机号码不合法
             view.showError(Application.getInstance().getString(R.string.data_account_invalid_parameter_mobile));
-        } else if (code == null||code.length()!=6) {
+        } else if (code == null || code.length() != 6) {
             //提示输入正确的验证码
             view.showError(Application.getInstance().getString(R.string.data_account_code_error));
         } else {
             //说明是验证码，首先校验验证码
             //如果校验成功直接登录 失败则提示
-           goLogin(numberPhone,code);
+            goLogin(numberPhone, code);
         }
     }
 
@@ -97,6 +97,7 @@ public class MsgLoginPresenter extends BasePresenter<MsgLoginContract.View>
                     //提示具体失败信息
                     view.showError(strRes);
                 }
+
                 @Override
                 public void onDataLoaded(ResModel result) {//验证码获取成功时
                     Application.showToast(String.format("发送%s", result.getMessage()));
@@ -117,6 +118,7 @@ public class MsgLoginPresenter extends BasePresenter<MsgLoginContract.View>
 
     /**
      * 登录请求成功的回调具体实现方法
+     *
      * @param result 请求成功得到的数据
      */
     @Override
@@ -136,6 +138,7 @@ public class MsgLoginPresenter extends BasePresenter<MsgLoginContract.View>
 
     /**
      * 登录请求失败的回调具体实现方法
+     *
      * @param strRes 失败的原因描述
      */
     @Override
@@ -146,7 +149,7 @@ public class MsgLoginPresenter extends BasePresenter<MsgLoginContract.View>
             return;
         if (strRes.contains(Factory.app().getString(R.string.account_data_user_not_exist))) {
             view.toRegister();
-            strRes =strRes+",请设置密码登录！";
+            strRes = strRes + ",请设置密码登录！";
         }
         //强制执行在主线程，避免阻塞主线程
         final String finalStrRes = strRes;
