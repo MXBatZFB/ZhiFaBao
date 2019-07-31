@@ -6,7 +6,6 @@ public class ResModel<T> {
      * message : 请输入正确的手机号
      * data :返回的数据
      */
-
     private int code;
     private String message;
     private T data ;
