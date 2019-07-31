@@ -16,15 +16,14 @@ public class HomeFragment extends Fragment {
     @BindView(R.id.appbar)
     AppBarLayout mAppbar;
 
-
     @Override
     protected int getContentLayoutId() {
         return R.layout.fragment_home;
     }
 
     @Override
-    protected void inintWidget(View root) {
-        super.inintWidget(root);
+    protected void initWidget(View root) {
+        super.initWidget(root);
         Glide.with(this)
                 .load(R.drawable.bg_photo)
                 .centerCrop()
