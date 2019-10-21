@@ -3,9 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".flags.account.RegisterFragment">
+    tools:context=".flags.account.LoginFragment">
+
     <FrameLayout
+        android:layout_marginTop="@dimen/len_8"
         android:layout_width="match_parent"
         android:layout_height="@dimen/len_56"
         android:background="@color/white"
@@ -13,14 +16,14 @@
 
         <ImageView
             android:id="@+id/im_back"
-            android:layout_width="@dimen/len_40"
-            android:layout_height="@dimen/len_40"
+            android:layout_width="@dimen/len_28"
+            android:layout_height="@dimen/len_28"
             android:layout_gravity="center_vertical"
-            android:layout_margin="@dimen/len_2"
+            android:layout_margin="@dimen/len_8"
             android:contentDescription="@string/app_name"
-            android:padding="@dimen/len_4"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_chevron_left_black" />
+            android:padding="@dimen/len_6"
+            android:scaleType="fitXY"
+            android:src="@drawable/x" />
 
         <TextView
             android:id="@+id/tv_account_title"
@@ -28,97 +31,177 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:padding="@dimen/len_8"
-            android:text="@string/new_accont_register"
+            android:text="@string/login_or_register"
             android:textColor="#111111"
             android:textSize="@dimen/font_18" />
     </FrameLayout>
 
-    <TextView
-        android:layout_marginTop="@dimen/len_88"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#B0B0B0FF"
-        android:textSize="@dimen/font_12"
-        android:text="@string/complete_register_tips"
-        />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/len_40"
+        android:layout_gravity="top"
+        android:layout_marginTop="@dimen/len_100">
+
+        <TextView
+            android:id="@+id/go_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="@dimen/len_40"
+            android:gravity="bottom"
+            android:text="@string/login"
+            android:textColor="#B2BACB"
+            android:textSize="@dimen/font_20" />
+
+        <TextView
+            android:id="@+id/go_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_marginEnd="@dimen/len_60"
+            android:gravity="bottom"
+            android:text="@string/register"
+            android:textColor="#001C54"
+            android:textSize="@dimen/font_28" />
+    </FrameLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/len_128"
-        android:layout_gravity="top"
-        android:layout_marginTop="@dimen/len_128"
-        android:layout_marginStart="@dimen/len_44"
-        android:layout_marginEnd="@dimen/len_44"
-        android:layout_marginBottom="@dimen/len_20"
+        android:layout_height="192dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/len_40"
+        android:layout_marginEnd="@dimen/len_40"
+        android:layout_marginBottom="@dimen/len_84"
         android:background="@drawable/common_shap">
 
         <EditText
-            android:id="@+id/et_first_pwd"
+            android:id="@+id/et_mobile"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/len_52"
-            android:layout_margin="@dimen/len_12"
+            android:layout_height="wrap_content"
+            android:autofillHints="@string/input_phone"
             android:background="@null"
-            android:hint="@string/set_login_pwd"
-            android:autofillHints="@string/set_login_pwd"
-            android:inputType="textPassword"
-            android:textColor="@color/black"
+            android:hint="@string/input_phone"
+            android:inputType="phone"
             android:padding="@dimen/len_14"
-            android:textColorHint="#B0B0B0"
-            android:textSize="@dimen/font_14"
+            android:textColor="@color/black"
+            android:textColorHint="#B2BACB"
+            android:textSize="@dimen/font_16"
             tools:ignore="UnusedAttribute" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/len_52"
+            android:background="#B2D7FA" />
+
         <EditText
-            android:id="@+id/et_second_pwd"
+            android:id="@+id/et_code"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/len_52"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/len_10"
+            android:autofillHints="@string/input_code"
+            android:background="@null"
+            android:hint="@string/input_code"
+            android:inputType="number"
+            android:padding="@dimen/len_14"
+            android:textColor="@color/black"
+            android:textColorHint="#B2BACB"
+            android:textSize="@dimen/font_16"
+            tools:ignore="UnusedAttribute" />
+
+        <Button
+            android:id="@+id/btn_get_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|end"
+            android:layout_marginBottom="@dimen/len_10"
+            android:background="#ffffff"
+            android:text="@string/get_code"
+            android:textColor="#001C54"
+            android:textSize="@dimen/font_16" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="26dp"
+            android:background="#B2D7FA" />
+
+        <EditText
+            android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="@dimen/len_52"
             android:layout_gravity="bottom"
-            android:layout_marginEnd="@dimen/len_56"
-            android:layout_marginTop="@dimen/len_12"
-            android:layout_marginStart="@dimen/len_12"
-            android:layout_marginBottom="@dimen/len_12"
+            android:layout_marginBottom="@dimen/len_10"
+            android:autofillHints="@string/input_pwd"
             android:background="@null"
-            android:hint="@string/again_input_pwd"
-            android:autofillHints="@string/again_input_pwd"
+            android:hint="@string/input_pwd"
             android:inputType="textPassword"
             android:padding="@dimen/len_14"
-            android:textColorHint="#B0B0B0"
-            android:textSize="@dimen/font_14"
             android:textColor="@color/black"
+            android:textColorHint="#B2BACB"
+            android:textSize="@dimen/font_16"
             tools:ignore="UnusedAttribute" />
 
         <ImageView
             android:id="@+id/im_show_pwd"
-            android:contentDescription="@string/app_name"
-            android:layout_width="25dp"
+            android:layout_width="wrap_content"
             android:layout_height="25dp"
-            android:longClickable="true"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/len_20"
+            android:contentDescription="@string/app_name"
+            android:longClickable="true"
             android:scaleType="centerInside"
             android:src="@drawable/ic_off" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="bottom"
+            android:background="#B2D7FA" />
     </FrameLayout>
+
+
+    <RadioButton
+        android:layout_width="@dimen/len_16"
+        android:layout_height="@dimen/len_16"
+        android:layout_gravity="center|start"
+        android:layout_marginStart="@dimen/len_44"
+        android:layout_marginTop="@dimen/len_28"
+        android:background="@drawable/selector_radio"
+        android:button="@null"
+        android:checked="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|start"
+        android:layout_marginStart="@dimen/len_72"
+        android:layout_marginTop="@dimen/len_36"
+        android:layout_marginEnd="@dimen/len_40"
+        android:text="提交验证平台将为你自动注册，代表您确认已阅读并同意《注册服务协议》和《隐私协议》"
+        android:textColor="#A3B1CC" />
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/len_48">
-
+        android:layout_marginTop="@dimen/len_100">
 
         <net.qiujuer.genius.ui.widget.Button
-            android:id="@+id/btn_go_login"
+            android:id="@+id/btn_submit_register"
             android:layout_width="290dp"
             android:layout_height="@dimen/len_40"
+            android:enabled="false"
             android:layout_gravity="center"
             android:background="@drawable/sel_btn_bg_black_alpha_44"
-            android:text="@string/login"
+            android:text="@string/register"
             android:textColor="@color/white"
+            android:textSize="@dimen/font_14"
             app:gTouchColor="@color/white_alpha_48"
             app:gTouchCornerRadius="22dp"
             app:gTouchEffect="ripple" />
-
 
         <net.qiujuer.genius.ui.widget.Loading
             android:id="@+id/loading"
@@ -129,5 +212,30 @@
             app:gBackgroundColor="@color/trans"
             app:gForegroundColor="@color/white"
             app:gForegroundLineSize="1dp" />
+    </FrameLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/len_156"
+        android:background="#ffffff"
+        android:text="@string/by_msg_login"
+        android:textColor="#001C54"
+        android:textSize="@dimen/font_16" />
+
+    <FrameLayout
+        android:id="@+id/fl_by_weiixn_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="@dimen/len_60">
+
+        <ImageView
+            android:layout_width="@dimen/len_60"
+            android:layout_height="@dimen/len_60"
+            android:layout_gravity="top|center_horizontal"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/weken" />
     </FrameLayout>
 </FrameLayout>

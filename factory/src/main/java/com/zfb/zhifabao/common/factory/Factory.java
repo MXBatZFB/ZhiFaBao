@@ -1,10 +1,13 @@
 package com.zfb.zhifabao.common.factory;
 
 import android.support.annotation.StringRes;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.zfb.zhifabao.common.app.Application;
 import com.zfb.zhifabao.common.factory.data.DataSource;
+import com.zfb.zhifabao.common.factory.persistence.Account;
+
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -36,6 +39,10 @@ public class Factory {
                 .create();
     }
 
+    public static void setup() {
+        //FlowManager.init(new FlowConfig.Builder(app()).openDatabasesOnInit(true).build());
+        Account.load(app());
+    }
 
     /**
      * 返回全局的Application

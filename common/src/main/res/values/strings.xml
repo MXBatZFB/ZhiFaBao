@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Common</string>
+    <string name="app_name">智法宝</string>
+    <string name="label_gallery_select_max_size">至多选择%s张</string>
 </resources>

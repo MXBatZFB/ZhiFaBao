@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="VerificationCodeEditText">
+        <attr name="codeTextColor" format="color" />
+        <attr name="codeTextSize" format="dimension" />
+        <attr name="codeTextBackgroud" format="reference" />
+        <attr name="codeCursorImg" format="reference" />
+        <attr name="codeCursorHeight" format="dimension" />
+    </declare-styleable>
+
+
+    <style name="v_code_tv">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/bg_border_bottom_gold</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginRight">5dp</item>
+    </style>
+
+    <style name="v_cursor">
+        <item name="android:layout_width">2dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:visibility">invisible</item>
+        <item name="android:scaleType">fitXY</item>
+    </style>
+</resources>

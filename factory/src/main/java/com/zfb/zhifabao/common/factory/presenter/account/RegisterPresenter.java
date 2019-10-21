@@ -1,61 +1,86 @@
 package com.zfb.zhifabao.common.factory.presenter.account;
 
+import android.text.TextUtils;
+
 import com.zfb.zhifabao.common.Common;
-import com.zfb.zhifabao.common.factory.Factory;
 import com.zfb.zhifabao.common.factory.R;
 import com.zfb.zhifabao.common.factory.data.AccountHelper;
 import com.zfb.zhifabao.common.factory.data.DataSource;
-import com.zfb.zhifabao.common.factory.model.api.LoginModel;
-import com.zfb.zhifabao.common.factory.model.api.ResModel;
-import com.zfb.zhifabao.common.factory.model.api.ResultForLogin;
+import com.zfb.zhifabao.common.factory.model.api.account.ResModel;
 import com.zfb.zhifabao.common.factory.presenter.BasePresenter;
-import com.zfb.zhifabao.common.factory.presenter.account.RegisterContract;
-import com.zfb.zhifabao.common.factory.utils.AESCBCUtils;
+
+import java.util.regex.Pattern;
+
+import static com.zfb.zhifabao.common.app.Application.getInstance;
 
 public class RegisterPresenter extends BasePresenter<RegisterContract.View>
         implements RegisterContract.Presenter,
-        DataSource.Callback<ResModel>, DataSource.ValidCallback,
+        DataSource.Callback<ResModel>,
         Common.Constance {
 
     public RegisterPresenter(RegisterContract.View mView) {
         super(mView);
     }
 
-
     /**
      * 用户注册的请求入口
      * @param code
      * @param phone
-     * @param first
-     * @param second
+     * @param password
      */
     @Override
-    public void register(String code, String phone, String first, String second) {
+    public void register(String code, String phone, String password) {
         start();
         RegisterContract.View view = getmView();
         if (view == null)
             return;
-        if (checkPassword(first, second)) {
-            AccountHelper.chekCode(phone, first, code, this);
+        if (checkPassword(password)) {
+            if (checkPhone(phone)) {
+                AccountHelper.register(phone, password, code, this);
+            }
         }
     }
 
+    @Override
+    public void getRegisterCode(String phone) {
+        if (checkPhone(phone)) {
+            getmView().starTimer();
+            AccountHelper.getRegisterCode(phone, new DataSource.Callback<ResModel>() {
+                @Override
+                public void onDataLoaded(ResModel result) {
+                    getmView().showError(result.getMessage());
+                }
+
+                @Override
+                public void onDtaNotAvailable(String msg) {
+                    getmView().showError(msg);
+                }
+            });
+        }
+
+    }
+
     /**
-     * @param first  用户第一次输入的密码
-     * @param second 用户第二次输入的密码
+     * @param password 密码
      * @return true 表示密码合法 false 表示不合法
      */
     @Override
-    public boolean checkPassword(String first, String second) {
-        if (first.length() <= 6 || second.length() <= 6) {
-            getmView().showError("密码必须大于6位");
+    public boolean checkPassword(String password) {
+        if (password.length() <= 9) {
+            getmView().showError("密码必须大于9位");
             return false;
         }
-        if (!first.equals(second)) {
-            getmView().showError("两次密码不一致");
+        return password.length() > 9;
+    }
+
+    @Override
+    public boolean checkPhone(String phone) {
+        if (TextUtils.isEmpty(phone) || !Pattern.matches(Common.Constance.REGEX_MOBILE, phone)) {
+            getmView().showError(getInstance().getString(R.string.data_account_invalid_parameter_mobile));
             return false;
         }
-        return first.length() > 6 & second.length() > 6 & first.equals(second) ? true : false;
+        return !TextUtils.isEmpty(phone) &&
+                Pattern.matches(Common.Constance.REGEX_MOBILE, phone);
     }
 
     /**
@@ -64,23 +89,14 @@ public class RegisterPresenter extends BasePresenter<RegisterContract.View>
      */
     @Override
     public void onDataLoaded(ResModel result) {
-        LoginModel model = new LoginModel(
-                GRANT_TYPE,
-                result.getMessage(),
-                AESCBCUtils.encrypt((String) result.getData()),
-                CLIENT_ID,
-                CLIENT_SECRET);
-        AccountHelper.login(model, new DataSource.Callback<ResultForLogin>() {
-            @Override
-            public void onDataLoaded(ResultForLogin result) {
-                getmView().loginSuccess();
-            }
 
-            @Override
-            public void onDtaNotAvailable(String msg) {
-               getmView().showError(msg);
-            }
-        });
+        if (result.getCode() == 6205) {
+            getmView().registerSuccess();
+            getmView().showError(result.getMessage());
+        } else {
+            getmView().showError(result.getMessage());
+        }
+
     }
 
     /**
@@ -90,24 +106,5 @@ public class RegisterPresenter extends BasePresenter<RegisterContract.View>
     @Override
     public void onDtaNotAvailable(String msg) {
         getmView().showError(msg);
-    }
-
-    /**
-     * 校验验证码有效的回调，成功的话表示可以注册
-     * @param phone 返回用户的电话
-     * @param password 返回用户设置的密码
-     */
-    @Override
-    public void isValid(String phone, String password) {
-        AccountHelper.register(phone, password, this);
-    }
-
-    /**
-     * 校验验证码无效的回调
-     * @param str 提示用户验证码无效的详情
-     */
-    @Override
-    public void isInvalid(String str) {
-        getmView().showError(str);
     }
 }

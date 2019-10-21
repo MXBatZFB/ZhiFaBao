@@ -12,6 +12,8 @@ public interface LoginContract {
         //发起deng
         void login(String numberPhone,String password);
 
-        boolean checkMoblie(String phone);
+        void msgLogin(String numberPhone, String code);
+
+        boolean checkPhone(String phone);
     }
 }

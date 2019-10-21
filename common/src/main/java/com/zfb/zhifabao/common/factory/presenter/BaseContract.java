@@ -1,5 +1,7 @@
 package com.zfb.zhifabao.common.factory.presenter;
 
+import com.zfb.zhifabao.common.widget.cyclerview.RecyclerAdapter;
+
 public interface BaseContract {
 
     interface  View<T extends Presenter>{
@@ -18,5 +20,10 @@ public interface BaseContract {
         void destroy();
     }
 
+    interface RecyclerView<T extends Presenter, ViewModel> extends View<T> {
+        RecyclerAdapter<ViewModel> getAdapter();
+
+        void onAdapterDataChange();
+    }
 
 }

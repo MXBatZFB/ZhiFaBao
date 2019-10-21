@@ -4,22 +4,22 @@
 
     <item
         android:id="@+id/action_home"
-        android:icon="@drawable/ic_home"
-        android:title="@string/menu_iteam_home_title"
+        android:icon="@drawable/home"
+        android:title="@string/menu_item_home_title"
         app:showAsAction="ifRoom"
         />
 
-    <item
-        android:id="@+id/action_consult"
-        android:icon="@drawable/ic_consult"
-        android:title="@string/menu_iteam_consult_title"
+      <item
+          android:id="@+id/action_find"
+          android:icon="@drawable/find"
+          android:title="@string/menu_item_find_title"
         app:showAsAction="ifRoom"
         />
 
     <item
         android:id="@+id/action_my"
-        android:icon="@drawable/ic_my"
-        android:title="@string/menu_iteam_my_title"
+        android:icon="@drawable/my"
+        android:title="@string/menu_item_my_title"
         app:showAsAction="ifRoom"
         />
 

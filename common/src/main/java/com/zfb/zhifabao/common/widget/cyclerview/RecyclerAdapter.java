@@ -6,7 +6,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.zfb.zhifabao.common.R;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -149,6 +151,10 @@ public abstract class RecyclerAdapter<Data> extends RecyclerView.Adapter<Recycle
        notifyDataSetChanged();
     }
 
+    public List<Data> getItems() {
+        return mDataList;
+    }
+
 
     /**
      * 自定义的V
@@ -197,8 +203,7 @@ public abstract class RecyclerAdapter<Data> extends RecyclerView.Adapter<Recycle
        if (this.mListener!=null){
            int pos  = holder.getAdapterPosition();
            //回调方法
-           this.mListener.onIteamClik(holder,mDataList.get(pos));
-
+           this.mListener.onItemClick(holder, mDataList.get(pos));
        }
     }
 
@@ -210,26 +215,27 @@ public abstract class RecyclerAdapter<Data> extends RecyclerView.Adapter<Recycle
         if (this.mListener!=null){
             int pos  = holder.getAdapterPosition();
             //回调方法
-            this.mListener.onIteamLongClik(holder,mDataList.get(pos));
+            this.mListener.onItemLongClick(holder, mDataList.get(pos));
         }
         return true;
     }
 
     public interface  AdapterListener<Data>{
-        void onIteamClik(RecyclerAdapter.ViewHolder holder, Data data);
-        void onIteamLongClik(RecyclerAdapter.ViewHolder holder, Data data);
+        void onItemClick(RecyclerAdapter.ViewHolder holder, Data data);
+
+        void onItemLongClick(RecyclerAdapter.ViewHolder holder, Data data);
     }
 
 
     @SuppressWarnings({"unused", "TypeParameterHidesVisibleType"})
-    public abstract class  AdapterListenerImpl<Data> implements AdapterListener<Data>{
+    public abstract static class AdapterListenerImpl<Data> implements AdapterListener<Data> {
         @Override
-        public void onIteamClik(ViewHolder holder, Data data) {
+        public void onItemClick(ViewHolder holder, Data data) {
 
         }
 
         @Override
-        public void onIteamLongClik(ViewHolder holder, Data data) {
+        public void onItemLongClick(ViewHolder holder, Data data) {
 
         }
     }

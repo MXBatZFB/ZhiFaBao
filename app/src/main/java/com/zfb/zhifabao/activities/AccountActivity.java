@@ -1,9 +1,10 @@
 package com.zfb.zhifabao.activities;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -11,17 +12,20 @@ import android.view.WindowManager;
 import com.zfb.zhifabao.R;
 import com.zfb.zhifabao.common.Common;
 import com.zfb.zhifabao.common.app.Activity;
-import com.zfb.zhifabao.common.app.Fragment;
 import com.zfb.zhifabao.flags.account.AccountTrigger;
 import com.zfb.zhifabao.flags.account.LoginFragment;
-import com.zfb.zhifabao.flags.account.MsgLoginFragment;
+import com.zfb.zhifabao.flags.account.MsgGetCodeFragment;
+import com.zfb.zhifabao.flags.account.NextFragment;
 import com.zfb.zhifabao.flags.account.RegisterFragment;
 import com.zfb.zhifabao.helper.NavHelper;
-
 
 @SuppressWarnings("unchecked")
 public class AccountActivity extends Activity implements AccountTrigger, Common.Constance {
     private NavHelper mHelper;
+
+    public static void show(Context context) {
+        context.startActivity(new Intent(context, AccountActivity.class));
+    }
 
     @Override
     protected int getContentLayoutId() {
@@ -34,11 +38,11 @@ public class AccountActivity extends Activity implements AccountTrigger, Common.
         super.initWidget();
         setStatuTrans();
         mHelper = new NavHelper(this, getSupportFragmentManager(), R.id.account_container);
-
         mHelper.add(TO_LOGIN_FLAGS, new NavHelper.Tab(LoginFragment.class, "LoginFragment"))
-                .add(TO_MSG_LOGIN_FLAGS, new NavHelper.Tab(MsgLoginFragment.class, "MsgLoginFragment"))
-                .add(TO_REGISTER_FLAGS, new NavHelper.Tab(RegisterFragment.class, "RegisterFragment"));
-        mHelper.performanceTab(Common.Constance.TO_MSG_LOGIN_FLAGS);
+                .add(TO_MSG_LOGIN_FLAGS, new NavHelper.Tab(MsgGetCodeFragment.class, "MsgLoginFragment"))
+                .add(TO_REGISTER_FLAGS, new NavHelper.Tab(RegisterFragment.class, "RegisterFragment"))
+                .add(TO_NEXT_MSG_LOGIN, new NavHelper.Tab(NextFragment.class, "NextFragment"));
+        mHelper.performanceTab(Common.Constance.TO_LOGIN_FLAGS);
     }
 
     @Override
@@ -53,9 +57,12 @@ public class AccountActivity extends Activity implements AccountTrigger, Common.
             case TO_MSG_LOGIN_FLAGS:
                 mHelper.performanceTab(flags);
                 break;
+            case TO_NEXT_MSG_LOGIN:
+                mHelper.performanceTab(flags);
+                break;
+
         }
     }
-
 
     /**
      * 这是状态栏透明的方法

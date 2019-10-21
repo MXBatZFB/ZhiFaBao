@@ -3,18 +3,21 @@ package com.zfb.zhifabao.common.factory.presenter.account;
 import android.text.TextUtils;
 
 import com.zfb.zhifabao.common.Common;
-import com.zfb.zhifabao.common.app.Application;
 import com.zfb.zhifabao.common.factory.R;
 import com.zfb.zhifabao.common.factory.data.AccountHelper;
 import com.zfb.zhifabao.common.factory.data.DataSource;
-import com.zfb.zhifabao.common.factory.model.api.LoginModel;
-import com.zfb.zhifabao.common.factory.model.api.ResultForLogin;
+import com.zfb.zhifabao.common.factory.model.api.account.LoginModel;
+import com.zfb.zhifabao.common.factory.model.api.account.MsgLoginModel;
+import com.zfb.zhifabao.common.factory.model.api.account.ResModel;
+import com.zfb.zhifabao.common.factory.model.api.account.UserInfo;
 import com.zfb.zhifabao.common.factory.presenter.BasePresenter;
-import com.zfb.zhifabao.common.factory.utils.AESCBCUtils;
 
 import java.util.regex.Pattern;
 
-public class LoginPresenter extends BasePresenter<LoginContract.View> implements LoginContract.Presenter , Common.Constance, DataSource.Callback<ResultForLogin> {
+import static com.zfb.zhifabao.common.app.Application.getInstance;
+
+public class LoginPresenter extends BasePresenter<LoginContract.View>
+        implements LoginContract.Presenter, Common.Constance, DataSource.Callback<ResModel<UserInfo>> {
 
     public LoginPresenter(LoginContract.View mView) {
         super(mView);
@@ -27,43 +30,46 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
         if (view == null) {
             return;
         }
-        if (!checkMoblie(numberPhone)) {
-            //提示手机号码不合法
-            view.showError(Application.getInstance().getString(R.string.data_account_invalid_parameter_mobile));
-        } else if (password.length() <= 6) {
-            //提示密码，或者验证码格式不对
-            view.showError(Application.getInstance().getString(R.string.data_account_invalid_parameter_password));
-        } else {//大于6是密码,说明是密码 需要AECCBC加密
-            //对密码进行加密操作
-            password = AESCBCUtils.encrypt(password);
+
+        if (checkPhone(numberPhone)) {
+            //创建Login请求的参数model
+            LoginModel model = new LoginModel(numberPhone, password);
+            //发起请求
+            AccountHelper.login(model, this);
         }
-        //加密后直接登录
-        //创建Login请求的参数model
-        LoginModel model = new LoginModel(GRANT_TYPE, numberPhone, password, CLIENT_ID, CLIENT_SECRET);
-        //发起请求
-        AccountHelper.login(model, this);
     }
 
-    /**
-     * 检查用户输入的号码是否合法
-     *
-     * @param phone 用户传入的号码
-     * @return boolean true 表示合法 false不合法
-     */
     @Override
-    public boolean checkMoblie(String phone) {
-        //合法为true
+    public void msgLogin(String numberPhone, String code) {
+        start();
+        if (checkPhone(numberPhone)) {
+            AccountHelper.byMsglogin(new MsgLoginModel(numberPhone, code), this);
+        }
+    }
+
+    @Override
+    public boolean checkPhone(String phone) {
+        if (TextUtils.isEmpty(phone) || !Pattern.matches(Common.Constance.REGEX_MOBILE, phone)) {
+            getmView().showError(getInstance().getString(R.string.data_account_invalid_parameter_mobile));
+            return false;
+        }
         return !TextUtils.isEmpty(phone) &&
                 Pattern.matches(Common.Constance.REGEX_MOBILE, phone);
     }
 
     @Override
-    public void onDataLoaded(ResultForLogin result) {
+    public void onDataLoaded(ResModel<UserInfo> result) {
+
         LoginContract.View view = getmView();
         if (view == null) {
             return;
         }
-        view.loginSuccess();
+        if (result.getResult().getToken() != null) {
+            view.loginSuccess();
+        } else {
+            view.showError(result.getMessage());
+        }
+
     }
 
     @Override

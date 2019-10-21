@@ -1,2 +1,1 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.zfb.zhifabao.common.factory" />
+<manifest package="com.zfb.zhifabao.common.factory" />

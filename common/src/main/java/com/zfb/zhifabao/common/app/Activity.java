@@ -14,7 +14,6 @@ public abstract class Activity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         //在界面初始化之前初始化窗口
         initWindows();
 
@@ -62,10 +61,12 @@ public abstract class Activity extends AppCompatActivity {
 
     /**
      * 初始化参数
-     * @param  Bundle Bundle
+     *
+     * @param Bundle Bundle
      * @return boolean
      */
-    private boolean initArgs(Bundle Bundle){
+    @SuppressWarnings("unused")
+    protected boolean initArgs(Bundle Bundle) {
         return true;
     }
 

@@ -2,8 +2,10 @@ package com.zfb.zhifabao.common.app;
 
 import android.os.SystemClock;
 import android.widget.Toast;
+
 import net.qiujuer.genius.kit.handler.Run;
 import net.qiujuer.genius.kit.handler.runable.Action;
+
 import java.io.File;
 
 public class Application extends android.app.Application {
@@ -31,11 +33,9 @@ public class Application extends android.app.Application {
             for (File file : files) {
                 file.delete();
             }
-
         File path = new File(getCahceDirFile(), isTmp ? "tmp.mp3" : SystemClock.uptimeMillis() + ".mp3");
         return path.getAbsoluteFile();
     }
-
 
     public static File getPortraitTmpFile() {
         File dir = new File(getCahceDirFile(), "portarit");
@@ -48,7 +48,6 @@ public class Application extends android.app.Application {
         File path = new File(dir, SystemClock.uptimeMillis() + ".jpg");
         return path;
     }
-
 
     public static void showToast(final String msg) {
         Run.onUiSync(new Action() {

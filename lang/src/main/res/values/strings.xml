@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Lang</string>
-    <string name="menu_iteam_home_title">首页</string>
-    <string name="menu_iteam_consult_title">咨询</string>
+    <string name="menu_item_home_title">首页</string>
+    <string name="menu_item_find_title">发现</string>
+    <string name="menu_item_progress_title">进度</string>
+    <string name="menu_item_my_title">我的</string>
+    <string name="title_assist_permissions">授予权限</string>
 </resources>

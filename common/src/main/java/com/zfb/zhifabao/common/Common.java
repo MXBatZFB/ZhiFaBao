@@ -6,10 +6,12 @@ public class Common {
         String CLIENT_ID ="sm46401EQr5Z1pYq6";
         String CLIENT_SECRET = "4l0Wgk0hI6P18qnwDP7t24AkG1279b5L";
         String REGEX_MOBILE = "[1][3,4,5,7,8][0-9]{9}$";
-        String API_URL ="http://119.23.205.68/";
+        String API_URL = "http://119.23.205.68:8080/";
+        int REQUEST_PORTRAIT = 0X100;
         int TO_LOGIN_FLAGS =0x4646;
         int TO_REGISTER_FLAGS =0x5666;
         int TO_MSG_LOGIN_FLAGS =0x8784;
+        int TO_NEXT_MSG_LOGIN = 0X6456;
     }
 
 }

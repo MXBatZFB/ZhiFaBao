@@ -21,6 +21,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url 'https://jitpack.io' }
     }
 }
 
@@ -44,4 +45,8 @@ ext{
 
     gsonVersion = '2.8.0'
     retrofitVersion = '2.1.0'
+    ucropVersion = "2.2.3-native"
+
+    dbflowVersion = "4.0.0-beta7"
+    easyPMVersion = "0.3.0"
 }
