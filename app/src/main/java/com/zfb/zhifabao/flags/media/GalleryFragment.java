@@ -15,7 +15,7 @@ import android.view.Window;
 
 import com.zfb.zhifabao.R;
 import com.zfb.zhifabao.common.tools.UiTool;
-import com.zfb.zhifabao.common.widget.GalleyView;
+import com.zfb.zhifabao.common.widget.cyclerview.GalleyView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,7 +35,7 @@ public class GalleryFragment extends BottomSheetDialogFragment implements Galley
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        return new TransStatusBottomSheedDialog(getContext());
+        return new TransStatusBottomSheetDialog(getContext());
     }
 
     @Override
@@ -49,6 +49,7 @@ public class GalleryFragment extends BottomSheetDialogFragment implements Galley
     @Override
     public void onStart() {
         super.onStart();
+        // LoaderManager.getInstance(getActivity());
         galleyView.setup(getLoaderManager(), this);
     }
 
@@ -74,17 +75,17 @@ public class GalleryFragment extends BottomSheetDialogFragment implements Galley
         void onSelectedImage(String path);
     }
 
-    public static class TransStatusBottomSheedDialog extends BottomSheetDialog {
+    public static class TransStatusBottomSheetDialog extends BottomSheetDialog {
 
-        public TransStatusBottomSheedDialog(@NonNull Context context) {
+        public TransStatusBottomSheetDialog(@NonNull Context context) {
             super(context);
         }
 
-        public TransStatusBottomSheedDialog(@NonNull Context context, int theme) {
+        public TransStatusBottomSheetDialog(@NonNull Context context, int theme) {
             super(context, theme);
         }
 
-        protected TransStatusBottomSheedDialog(@NonNull Context context, boolean cancelable, OnCancelListener cancelListener) {
+        protected TransStatusBottomSheetDialog(@NonNull Context context, boolean cancelable, OnCancelListener cancelListener) {
             super(context, cancelable, cancelListener);
         }
 

@@ -9,13 +9,15 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.zfb.zhifabao.R;
+import com.zfb.zhifabao.common.Common;
 import com.zfb.zhifabao.common.app.Activity;
-import com.zfb.zhifabao.common.app.Fragment;
+import com.zfb.zhifabao.flags.account.AccountTrigger;
+import com.zfb.zhifabao.flags.law.LookFragment;
 import com.zfb.zhifabao.flags.law.SettleCasesFragment;
+import com.zfb.zhifabao.helper.NavHelper;
 
-public class SettleCaseActivity extends Activity {
-    private Fragment curFragment;
-
+public class SettleCaseActivity extends Activity implements AccountTrigger, Common.Constance {
+    private NavHelper mNavHelper;
     public static void show(Context context) {
         context.startActivity(new Intent(context, SettleCaseActivity.class));
     }
@@ -29,8 +31,11 @@ public class SettleCaseActivity extends Activity {
     protected void initWidget() {
         super.initWidget();
         setStatuTrans();
-        curFragment = new SettleCasesFragment();
-        getSupportFragmentManager().beginTransaction().add(R.id.lay_settle_cases_container, curFragment).commit();
+
+        mNavHelper = new NavHelper(this, getSupportFragmentManager(), R.id.lay_settle_cases_container);
+        mNavHelper.add(TO_LOOK_LAW_FRAGMENT, new NavHelper.Tab(LookFragment.class, LookFragment.class.getName()))
+                .add(Common.Constance.TO_SETTLE_CASES_FRAGMENT, new NavHelper.Tab(SettleCasesFragment.class, SettleCasesFragment.class.getName()));
+        mNavHelper.performanceTab(Common.Constance.TO_SETTLE_CASES_FRAGMENT);
     }
 
     /**
@@ -44,5 +49,10 @@ public class SettleCaseActivity extends Activity {
             window.setStatusBarColor(Color.TRANSPARENT);
             window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
+    }
+
+    @Override
+    public void triggerView(int flags) {
+        mNavHelper.performanceTab(flags);
     }
 }

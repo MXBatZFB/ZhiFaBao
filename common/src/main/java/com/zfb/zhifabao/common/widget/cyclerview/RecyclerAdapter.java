@@ -20,6 +20,7 @@ public abstract class RecyclerAdapter<Data> extends RecyclerView.Adapter<Recycle
         View.OnClickListener,View.OnLongClickListener,AdapterCallback<Data> {
     private final List<Data> mDataList;
     private AdapterListener mListener;
+    private int mCurrentPsition;
 
     public RecyclerAdapter() {
         this(null);
@@ -33,6 +34,7 @@ public abstract class RecyclerAdapter<Data> extends RecyclerView.Adapter<Recycle
         this.mDataList = mDataList;
         this.mListener = mListener;
     }
+
 
     /**
      *
@@ -202,9 +204,15 @@ public abstract class RecyclerAdapter<Data> extends RecyclerView.Adapter<Recycle
        ViewHolder holder  = (ViewHolder) v.getTag(R.id.tag_recycler_holder);
        if (this.mListener!=null){
            int pos  = holder.getAdapterPosition();
+           mCurrentPsition = pos;
            //回调方法
-           this.mListener.onItemClick(holder, mDataList.get(pos));
+           this.mListener.onItemClick(holder, mDataList.get(pos), pos);
        }
+    }
+
+    public int getCurrentPosition() {
+
+        return mCurrentPsition;
     }
 
 
@@ -215,27 +223,27 @@ public abstract class RecyclerAdapter<Data> extends RecyclerView.Adapter<Recycle
         if (this.mListener!=null){
             int pos  = holder.getAdapterPosition();
             //回调方法
-            this.mListener.onItemLongClick(holder, mDataList.get(pos));
+            this.mListener.onItemLongClick(holder, mDataList.get(pos), pos);
         }
         return true;
     }
 
     public interface  AdapterListener<Data>{
-        void onItemClick(RecyclerAdapter.ViewHolder holder, Data data);
+        void onItemClick(RecyclerAdapter.ViewHolder holder, Data data, int position);
 
-        void onItemLongClick(RecyclerAdapter.ViewHolder holder, Data data);
+        void onItemLongClick(RecyclerAdapter.ViewHolder holder, Data data, int position);
     }
 
 
     @SuppressWarnings({"unused", "TypeParameterHidesVisibleType"})
     public abstract static class AdapterListenerImpl<Data> implements AdapterListener<Data> {
         @Override
-        public void onItemClick(ViewHolder holder, Data data) {
+        public void onItemClick(ViewHolder holder, Data data, int position) {
 
         }
 
         @Override
-        public void onItemLongClick(ViewHolder holder, Data data) {
+        public void onItemLongClick(ViewHolder holder, Data data, int position) {
 
         }
     }

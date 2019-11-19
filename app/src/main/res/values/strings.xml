@@ -1,21 +1,13 @@
 <resources>
-    <string name="app_name">ZhiFaBao</string>
-    <string name="App_Name">智法宝</string>
-    <string name="sychology">心理测评</string>
-    <string name="occupation">职业测评</string>
-    <string name="myhetong">我的合同</string>
+    <string name="app_name">智法宝</string>
     <string name="contract">劳动法咨询</string>
     <string name="doanjian">劳动案件解决</string>
+    <string name="occupation">招聘隐患解决</string>
+    <string name="hetongshenhe">合同审核</string>
     <string name="hetongniding">拟劳动合同</string>
-    <string name="hetongshenhe">劳动合同审核</string>
-    <string name="hint">查员工/公司</string>
-    <string name="all_contract">所有合同</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="menu_iteam_my_title">我的</string>
-    <string name="again_input_pwd">请再次输入登录密码</string>
-    <string name="complete_register_tips">检测到你是未注册用户，请设置密码完成注册</string>
+    <string name="myhetong">我的合同</string>
     <string name="register">注册</string>
     <string name="next">下一步</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

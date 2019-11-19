@@ -3,12 +3,18 @@ package com.zfb.zhifabao.flags.law;
 import android.widget.TextView;
 
 import com.zfb.zhifabao.R;
-import com.zfb.zhifabao.common.app.Fragment;
+import com.zfb.zhifabao.common.app.PresenterFragment;
+import com.zfb.zhifabao.common.factory.model.api.account.ResModel;
+import com.zfb.zhifabao.common.factory.model.api.cases.GetCaseTypeResultModel;
+import com.zfb.zhifabao.common.factory.presenter.cases.SettleCasesContract;
+import com.zfb.zhifabao.common.factory.presenter.cases.SettleCasesPresenter;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class SettleCasesFragment extends Fragment implements DialogFragment.OnSelectedCallback {
+public class SettleCasesFragment extends PresenterFragment<SettleCasesContract.Presenter>
+        implements DialogFragment.OnSelectedCallback,
+        SettleCasesContract.View {
     @BindView(R.id.select_cases_type)
     TextView tv_cases_type;
 
@@ -22,8 +28,7 @@ public class SettleCasesFragment extends Fragment implements DialogFragment.OnSe
 
     @OnClick(R.id.select_cases_type)
     void selectCasesType() {
-        DialogFragment fragment = new DialogFragment(this, R.id.select_cases_type);
-        fragment.show(getChildFragmentManager(), SettleCasesFragment.class.getName());
+        mPresenter.loadCaseType();
     }
 
     @OnClick(R.id.im_back)
@@ -34,5 +39,18 @@ public class SettleCasesFragment extends Fragment implements DialogFragment.OnSe
     @Override
     public void selected(String str, int temp) {
         tv_cases_type.setText(str);
+    }
+
+    @Override
+    protected SettleCasesContract.Presenter initPresenter() {
+        return new SettleCasesPresenter(this);
+    }
+
+    @Override
+    public void onLoadCaseTypeSuccess(GetCaseTypeResultModel result) {
+        ResModel<GetCaseTypeResultModel> model = new ResModel<>();
+        model.setResult(result);
+        DialogFragment fragment = new DialogFragment(this, R.id.select_cases_type, model);
+        fragment.show(getChildFragmentManager(), SettleCasesFragment.class.getName());
     }
 }

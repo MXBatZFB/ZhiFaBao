@@ -47,22 +47,9 @@ public class AccountActivity extends Activity implements AccountTrigger, Common.
 
     @Override
     public void triggerView(int flags) {
-        switch (flags) {
-            case TO_REGISTER_FLAGS:
-                mHelper.performanceTab(flags);
-                break;
-            case TO_LOGIN_FLAGS:
-                mHelper.performanceTab(flags);
-                break;
-            case TO_MSG_LOGIN_FLAGS:
-                mHelper.performanceTab(flags);
-                break;
-            case TO_NEXT_MSG_LOGIN:
-                mHelper.performanceTab(flags);
-                break;
-
-        }
+        mHelper.performanceTab(flags);
     }
+
 
     /**
      * 这是状态栏透明的方法

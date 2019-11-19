@@ -52,7 +52,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="当地劳动法"
+                android:text="劳动法"
                 android:textColor="#001C54"
                 android:textSize="@dimen/font_20" />
 
@@ -74,6 +74,7 @@
                     android:textColor="#B2BACB" />
 
                 <Button
+                    android:id="@+id/btn_law_find"
                     android:layout_width="65dp"
                     android:layout_height="30dp"
                     android:layout_gravity="end"
@@ -88,7 +89,6 @@
                 android:background="#DDDDDD" />
         </LinearLayout>
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -96,7 +96,6 @@
             android:layout_marginTop="@dimen/len_16"
             android:layout_marginEnd="18dp"
             android:orientation="vertical">
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -115,17 +114,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="@dimen/len_84"
-                    android:gravity="center"
-                    android:text="请选择争议类型"
-                    android:textColor="#B2BACB" />
 
-                <Button
-                    android:layout_width="65dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="end"
-                    android:background="@drawable/x_shape"
-                    android:text="查询" />
+                    android:gravity="center"
+                    android:text="请选择争你要查看的案列"
+                    android:textColor="#B2BACB" />
             </FrameLayout>
 
             <View
@@ -134,11 +126,10 @@
                 android:layout_margin="@dimen/len_8"
                 android:background="#DDDDDD" />
         </LinearLayout>
-
     </LinearLayout>
 
-
     <FrameLayout
+        android:id="@+id/fl_mould_download"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -147,8 +138,10 @@
         android:padding="@dimen/len_16">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/select_process_documents"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="@dimen/len_8"
             android:layout_gravity="start|center_vertical"
             android:layout_marginStart="@dimen/len_28"
             android:gravity="center"

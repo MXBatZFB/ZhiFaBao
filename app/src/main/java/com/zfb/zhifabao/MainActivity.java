@@ -18,6 +18,7 @@ import android.view.WindowManager;
 import com.zfb.zhifabao.activities.UserActivity;
 import com.zfb.zhifabao.common.app.Activity;
 import com.zfb.zhifabao.common.factory.persistence.Account;
+import com.zfb.zhifabao.flags.main.CommonTrigger;
 import com.zfb.zhifabao.flags.main.FindFragment;
 import com.zfb.zhifabao.flags.main.HomeFragment;
 import com.zfb.zhifabao.flags.main.MyFragment;
@@ -29,7 +30,7 @@ import butterknife.ButterKnife;
 /**
  * 这是开发分支，用于智法宝开发
  */
-public class MainActivity extends Activity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends Activity implements BottomNavigationView.OnNavigationItemSelectedListener, CommonTrigger {
     private NavHelper mNavHelper;
     @BindView(R.id.bottom_navigation)
     BottomNavigationView bottomNavigation;
@@ -66,7 +67,7 @@ public class MainActivity extends Activity implements BottomNavigationView.OnNav
         mNavHelper = new NavHelper(this, getSupportFragmentManager(), R.id.fl_container);
         mNavHelper.add(R.id.action_home, new NavHelper.Tab(HomeFragment.class, R.string.menu_item_home_title))
                 .add(R.id.action_find, new NavHelper.Tab(FindFragment.class, R.string.menu_item_find_title))
-                  .add(R.id.action_my, new NavHelper.Tab(MyFragment.class, R.string.menu_iteam_my_title));
+                .add(R.id.action_my, new NavHelper.Tab(MyFragment.class, R.string.menu_item_my_title));
         bottomNavigation.setOnNavigationItemSelectedListener(this);
         mNavHelper.performanceTab(R.id.action_home);
     }
@@ -100,5 +101,9 @@ public class MainActivity extends Activity implements BottomNavigationView.OnNav
         return mNavHelper.performanceTab(menuItem.getItemId());
     }
 
+    @Override
+    public void triggerView(int flags) {
+        mNavHelper.performanceTab(flags);
+    }
 }
 

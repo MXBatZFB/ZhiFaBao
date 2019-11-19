@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -50,7 +51,6 @@ public abstract class Fragment extends android.support.v4.app.Fragment {
      */
     @SuppressWarnings("unused")
     protected void initArgs(Bundle Bundle){
-
     }
 
     /**
@@ -63,7 +63,6 @@ public abstract class Fragment extends android.support.v4.app.Fragment {
      * 初始化数据
      */
     private void initData() {
-
     }
 
     /**

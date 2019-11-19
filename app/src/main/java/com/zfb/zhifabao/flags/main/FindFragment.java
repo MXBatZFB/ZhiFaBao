@@ -47,12 +47,12 @@ public class FindFragment extends PresenterFragment<FindContract.Presenter> impl
         mAdapter = new FindAdapter();
         mAdapter.setListener(new RecyclerAdapter.AdapterListener<FindContent>() {
             @Override
-            public void onItemClick(RecyclerAdapter.ViewHolder holder, FindContent findContent) {
+            public void onItemClick(RecyclerAdapter.ViewHolder holder, FindContent findContent, int position) {
                 WebActivity.show(getActivity(), findContent.getArticle_link());
             }
 
             @Override
-            public void onItemLongClick(RecyclerAdapter.ViewHolder holder, FindContent findContent) {
+            public void onItemLongClick(RecyclerAdapter.ViewHolder holder, FindContent findContent, int position) {
 
             }
         });

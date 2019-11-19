@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".flags.law.ShowLawFragment">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/len_56"
+        android:layout_marginTop="@dimen/len_8"
+        android:background="@color/white"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/im_back"
+            android:layout_width="@dimen/len_28"
+            android:layout_height="@dimen/len_28"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/len_8"
+            android:contentDescription="@string/app_name"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_chevron_left_black"
+            android:tint="@color/black" />
+
+        <TextView
+            android:id="@+id/show_law_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/len_8"
+            android:text="当地劳动法"
+            android:textColor="#111111"
+            android:textSize="@dimen/font_18" />
+    </FrameLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_showLaw"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/len_60"
+        android:background="@color/white" />
+
+</FrameLayout>

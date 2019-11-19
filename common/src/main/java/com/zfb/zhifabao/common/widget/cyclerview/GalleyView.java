@@ -1,4 +1,4 @@
-package com.zfb.zhifabao.common.widget;
+package com.zfb.zhifabao.common.widget.cyclerview;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -20,7 +20,6 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.zfb.zhifabao.common.R;
-import com.zfb.zhifabao.common.widget.cyclerview.RecyclerAdapter;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -34,6 +33,7 @@ public class GalleyView extends RecyclerView {
     private static final int LOADER_ID = 0X0100;
     private static final int MIN_IMAGE_FILE_SIZE = 10 * 1024;
     @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
+    //被选中pic的集合
     private List<Image> mSelectImages = new LinkedList<>();
     private Adapter mAdapter = new Adapter();
     private LoaderCallback mLoaderCallback = new LoaderCallback();
@@ -59,7 +59,7 @@ public class GalleyView extends RecyclerView {
         setAdapter(mAdapter);
         mAdapter.setListener(new RecyclerAdapter.AdapterListenerImpl<Image>() {
             @Override
-            public void onItemClick(RecyclerAdapter.ViewHolder holder, Image image) {
+            public void onItemClick(RecyclerAdapter.ViewHolder holder, Image image, int position) {
                 if (onItemSelectClick(image)) {
                     holder.upData(image);
                 }
@@ -75,17 +75,22 @@ public class GalleyView extends RecyclerView {
 
     private boolean onItemSelectClick(Image image) {
         boolean notifyRefresh;
+        //如果在集合中，表示已经被选中过，是再次被点击
+        //所以从被选中集合中移除该image
         if (mSelectImages.contains(image)) {
             mSelectImages.remove(image);
             image.isSelect = false;
             notifyRefresh = true;
         } else {
+            //如果没在集合中，表示还没有被选中过
+            //1.如果此时被选中的集合数量大于或者等于最大能选中的数量，则提示至多选择MAX_IMAGE_COUNT张Pic
             if (mSelectImages.size() >= MAX_IMAGE_COUNT) {
                 String str = getResources().getString(R.string.label_gallery_select_max_size);
                 str = String.format(str, String.valueOf(MAX_IMAGE_COUNT));
                 Toast.makeText(getContext(), str, Toast.LENGTH_SHORT).show();
                 notifyRefresh = false;
             } else {
+                //2.正常选择的情况为，设置选中的image状态为被选中状态刷新界面
                 mSelectImages.add(image);
                 image.isSelect = true;
                 notifyRefresh = true;

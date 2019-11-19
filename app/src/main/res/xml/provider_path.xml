@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <paths>
+        <!--name URI    path subdir-->
+        <!-- 内存卡：context.getCacheDir()-->
+        <files-path
+            name="files"
+            path="/" />
+
+        <cache-path
+            name="cache"
+            path="/" />
+
+        <!-- 内存卡：context.getFileDir()-->
+        <files-path
+            name="files_download"
+            path="/" />
+
+        <!-- SD卡 context.getExternalFilesDir()-->
+        <external-files-path
+            name="external_files_download"
+            path="/" />
+    </paths>
+</resources>

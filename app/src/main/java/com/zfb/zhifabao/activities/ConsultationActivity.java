@@ -9,12 +9,16 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.zfb.zhifabao.R;
+import com.zfb.zhifabao.common.Common;
 import com.zfb.zhifabao.common.app.Activity;
-import com.zfb.zhifabao.common.app.Fragment;
+import com.zfb.zhifabao.flags.account.AccountTrigger;
 import com.zfb.zhifabao.flags.law.ConsultationFragment;
+import com.zfb.zhifabao.flags.law.LookFragment;
+import com.zfb.zhifabao.flags.law.ShowLawFragment;
+import com.zfb.zhifabao.helper.NavHelper;
 
-public class ConsultationActivity extends Activity {
-    private Fragment curFragment;
+public class ConsultationActivity extends Activity implements AccountTrigger, Common.Constance {
+    private NavHelper mHelper;
 
     public static void show(Context context) {
         context.startActivity(new Intent(context, ConsultationActivity.class));
@@ -25,13 +29,15 @@ public class ConsultationActivity extends Activity {
         return R.layout.activity_consultation;
     }
 
-
     @Override
     protected void initWidget() {
         super.initWidget();
         setStatuTrans();
-        curFragment = new ConsultationFragment();
-        getSupportFragmentManager().beginTransaction().add(R.id.lay_consultation_container, curFragment).commit();
+        mHelper = new NavHelper(this, getSupportFragmentManager(), R.id.lay_consultation_container);
+        mHelper.add(TO_CONSULTATION_FRAGMENT, new NavHelper.Tab(ConsultationFragment.class, "ConsultationFragment"))
+                .add(TO_SHOW_LAW_FRAGMENT, new NavHelper.Tab(ShowLawFragment.class, "ShowLawFragment"))
+                .add(TO_LOOK_LAW_FRAGMENT, new NavHelper.Tab(LookFragment.class, "LookFragment"));
+        mHelper.performanceTab(Common.Constance.TO_CONSULTATION_FRAGMENT);
     }
 
 
@@ -51,6 +57,10 @@ public class ConsultationActivity extends Activity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        finish();
+    }
+
+    @Override
+    public void triggerView(int flags) {
+        mHelper.performanceTab(flags);
     }
 }

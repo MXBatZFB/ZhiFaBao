@@ -76,6 +76,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/len_16"
@@ -84,6 +85,7 @@
             android:textSize="@dimen/len_40" />
 
         <TextView
+            android:id="@+id/tv_week"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/len_16"
@@ -194,6 +196,7 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/im_quiz"
                     android:layout_width="@dimen/len_40"
                     android:layout_height="@dimen/len_40"
                     android:layout_gravity="top|center_horizontal"
@@ -232,6 +235,7 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/im_contract_review"
                     android:layout_width="@dimen/len_40"
                     android:layout_height="@dimen/len_40"
                     android:layout_gravity="top|center_horizontal"
@@ -257,6 +261,7 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/im_formulation_contract"
                     android:layout_width="@dimen/len_40"
                     android:layout_height="@dimen/len_40"
                     android:layout_gravity="top|center_horizontal"
@@ -282,6 +287,7 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/im_my_contract"
                     android:layout_width="@dimen/len_40"
                     android:layout_height="@dimen/len_40"
                     android:layout_gravity="top|center_horizontal"
@@ -303,6 +309,7 @@
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/im_law_home"
         android:layout_width="339dp"
         android:layout_height="@dimen/len_80"
         android:layout_gravity="bottom|center"

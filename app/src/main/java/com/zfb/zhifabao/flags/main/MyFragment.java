@@ -14,11 +14,15 @@ import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.ViewTarget;
 import com.zfb.zhifabao.R;
+import com.zfb.zhifabao.activities.AccountActivity;
 import com.zfb.zhifabao.common.app.Fragment;
 import com.zfb.zhifabao.common.factory.model.api.account.UserInfo;
 import com.zfb.zhifabao.common.factory.persistence.Account;
 
+import net.qiujuer.genius.ui.widget.Button;
+
 import butterknife.BindView;
+import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
@@ -33,6 +37,8 @@ public class MyFragment extends Fragment {
     TextView tvName;
     @BindView(R.id.member_pic)
     ImageView memberPic;
+    @BindView(R.id.out_login)
+    Button btnOutLogin;
 
     public MyFragment() {
     }
@@ -55,6 +61,13 @@ public class MyFragment extends Fragment {
             Glide.with(this).load(R.drawable.hy_logo).into(memberPic);
         }
         tvName.setText(userInfo.getUsername());
+    }
+
+    @OnClick(R.id.out_login)
+    void outLogin() {
+        Account.outLogin();
+        AccountActivity.show(getContext());
+        getActivity().finish();
     }
 
     @Override

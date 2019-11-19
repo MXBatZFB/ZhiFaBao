@@ -64,8 +64,7 @@
                 android:layout_width="@dimen/len_56"
                 android:layout_height="@dimen/len_56"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/len_40"
-                android:src="@drawable/portrait" />
+                android:layout_marginStart="@dimen/len_40" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -269,6 +268,7 @@
         android:background="#F5F5F5" />
 
     <net.qiujuer.genius.ui.widget.Button
+        android:id="@+id/out_login"
         android:layout_width="match_parent"
         android:layout_height="@dimen/len_56"
         android:layout_marginTop="526dp"

@@ -37,9 +37,9 @@ public class FindHelper {
             @Override
             public void onFailure(Call<ResModel<List<FindContent>>> call, Throwable t) {
                 callback.onDtaNotAvailable(Factory.app().getString(R.string.data_network_error));
+                call.cancel();
             }
         });
     }
-
 
 }

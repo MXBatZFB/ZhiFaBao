@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="title_select_gallery">选择照片</string>
-
+    <string name="title_select_file">选择文件</string>
 
 </resources>

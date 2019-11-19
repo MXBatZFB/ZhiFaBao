@@ -46,6 +46,7 @@ public class UploaderHelper {
                 public void onFailure(Call<ResModel<UserInfo>> call, Throwable t) {
                     //提示网络请求失败
                     callback.onDtaNotAvailable(Factory.app().getString(R.string.data_network_error));
+                    call.cancel();
                 }
             });
         }

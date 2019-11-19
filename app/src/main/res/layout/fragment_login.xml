@@ -153,6 +153,7 @@
             android:enabled="false"
             android:outlineProvider="bounds"
             android:text="@string/login"
+            android:elevation="@dimen/len_4"
             android:textColor="@color/white"
             android:textSize="@dimen/font_14"
             app:gTouchColor="@color/white_alpha_48"

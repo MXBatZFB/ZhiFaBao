@@ -53,6 +53,7 @@ public class NetWork implements Common.Constance {
                     builder.addHeader("token", Account.getToken());
                 }
                 builder.addHeader("Content-Typle", "application/json");
+                builder.addHeader("Connection", "Keep-Alive");
                 Request newRequest = builder.build();
                 return chain.proceed(newRequest);
             }

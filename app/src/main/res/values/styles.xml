@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <style name="AppTheme" parent="AppTheme.Base">
         <!--
@@ -7,6 +7,8 @@
         <item name="actionOverflowButtonStyle">@style/Widget.ActionButton.Overflow</item>
         <item name="actionOverflowMenuStyle">@style/Widget.PopupMenu.Overflow</item>
          -->
+
+
         <item name="colorControlNormal">@color/white_alpha_240</item>
         <item name="colorControlActivated">@color/textPrimary</item>
     </style>
@@ -17,16 +19,20 @@
         <item name="android:windowAnimationStyle">@null</item>
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowFrame">@null</item>
-        <item name="android:fitsSystemWindows">false</item>
     </style>
 
     <style name="AppTheme.TransStatusBar" parent="AppTheme.TransStatusBar.Base" />
 
     <style name="AppTheme.Main" parent="AppTheme.TransStatusBar">
-        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
         <item name="toolbarTitleColor">@color/white</item>
         <item name="toolbarMenuIconColor">@color/white</item>
         <item name="colorControlHighlight">@color/textSecond</item>
+        <item name="android:windowBackground">@color/windowsBackgroundLight</item>
+    </style>
+
+    <style name="AppTheme.Account" parent="AppTheme.TransStatusBar" />
+
+    <style name="AppTheme.Message" parent="AppTheme.TransStatusBar">
         <item name="android:windowBackground">@color/windowsBackgroundLight</item>
     </style>
 
@@ -34,5 +40,6 @@
         <item name="android:textSize">?attr/toolbarTitleSize</item>
         <item name="android:textColor">?attr/toolbarTitleColor</item>
     </style>
+
 
 </resources>

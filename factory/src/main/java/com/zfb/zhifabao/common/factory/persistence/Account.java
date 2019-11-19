@@ -67,6 +67,15 @@ public class Account {
         save(Factory.app());
     }
 
+    public static void outLogin() {
+        Account.token = null;
+        Account.account = null;
+        Account.userName = null;
+        Account.portrait = null;
+        Account.companyName = null;
+        save(Factory.app());
+    }
+
     public static void login(UserInfo model) {
         Account.token = model.getToken();
         Account.account = model.getPhonenumber();
