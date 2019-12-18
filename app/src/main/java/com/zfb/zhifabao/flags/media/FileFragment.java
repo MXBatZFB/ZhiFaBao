@@ -4,8 +4,7 @@ package com.zfb.zhifabao.flags.media;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.support.design.widget.BottomSheetDialogFragment;
-import android.support.v4.app.Fragment;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +15,7 @@ import com.zfb.zhifabao.common.widget.cyclerview.FileItemView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class FileFragment extends BottomSheetDialogFragment {
     @BindView(R.id.rv_file_item)
     FileItemView fileItemView;

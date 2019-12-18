@@ -2,7 +2,7 @@ package com.zfb.zhifabao.activities;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.zfb.zhifabao.R;
 import com.zfb.zhifabao.common.Common;

@@ -2,16 +2,15 @@ package com.zfb.zhifabao.common.app;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public abstract class Fragment extends android.support.v4.app.Fragment {
+public abstract class Fragment extends androidx.fragment.app.Fragment {
     protected Unbinder mUnbinder;
     protected View mRootView;
 

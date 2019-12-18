@@ -3,8 +3,8 @@ package com.zfb.zhifabao.flags.main;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.design.widget.AppBarLayout;
+import androidx.annotation.RequiresApi;
+import com.google.android.material.appbar.AppBarLayout;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -53,6 +53,7 @@ public class HomeFragment extends Fragment {
     @Override
     protected void initWidget(View root) {
         super.initWidget(root);
+
         Glide.with(this)
                 .load(R.drawable.head_backgroud)
                 .into(new ViewTarget<View, GlideDrawable>(mAppbar) {
@@ -114,7 +115,7 @@ public class HomeFragment extends Fragment {
 
     public String getWeek() {
         // 再转换为时间
-
+       boolean aa = true;
         Date date = new Date();
 
         Calendar c = Calendar.getInstance();
@@ -190,7 +191,6 @@ public class HomeFragment extends Fragment {
         ContractFormulationActivity.show(getActivity());
     }
 
-
     @OnClick(R.id.im_my_contract)
     void myContract() {
         MyContractActivity.show(getActivity());
@@ -200,6 +200,4 @@ public class HomeFragment extends Fragment {
     void law_home() {
         WebActivity.show(getActivity(), "https://mp.weixin.qq.com/s/K1ENozD-wq83Hcz5zmJXmg");
     }
-
-
 }

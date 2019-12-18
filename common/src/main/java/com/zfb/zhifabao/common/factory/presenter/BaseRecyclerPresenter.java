@@ -1,6 +1,6 @@
 package com.zfb.zhifabao.common.factory.presenter;
 
-import android.support.v7.util.DiffUtil;
+import androidx.recyclerview.widget.DiffUtil;
 
 import com.zfb.zhifabao.common.widget.cyclerview.RecyclerAdapter;
 

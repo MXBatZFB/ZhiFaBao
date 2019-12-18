@@ -4,11 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.RequiresApi;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-
 import com.zfb.zhifabao.R;
 import com.zfb.zhifabao.common.Common;
 import com.zfb.zhifabao.common.app.Activity;
@@ -49,7 +48,6 @@ public class AccountActivity extends Activity implements AccountTrigger, Common.
     public void triggerView(int flags) {
         mHelper.performanceTab(flags);
     }
-
 
     /**
      * 这是状态栏透明的方法
