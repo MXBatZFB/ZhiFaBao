@@ -5,30 +5,32 @@ package com.zfb.zhifabao.common.factory.model.api.account;
  * 邮箱：mdl_android@163.com
  */
 public class RegisterModel {
-    private String phonenumber;
+    private String phone;
     private String passwd;
-    private String smscode;
+    private String code;
 
-    public RegisterModel(String phonenumber, String username, String passwd, String age, String smscode) {
-        this.phonenumber = phonenumber;
+    public RegisterModel(String phone, String passwd, String code) {
+        this.phone = phone;
         this.passwd = passwd;
-        this.smscode = smscode;
+        this.code = code;
     }
+
 
     @Override
     public String toString() {
         return "RegisterModel{" +
-                "phonenumber='" + phonenumber + '\'' +
-                ", smscode='" + smscode + '\'' +
+                "phone='" + phone + '\'' +
+                ", passwd='" + passwd + '\'' +
+                ", code='" + code + '\'' +
                 '}';
     }
 
-    public String getPhonenumber() {
-        return phonenumber;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPhonenumber(String phonenumber) {
-        this.phonenumber = phonenumber;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getPasswd() {
@@ -39,11 +41,11 @@ public class RegisterModel {
         this.passwd = passwd;
     }
 
-    public String getSmscode() {
-        return smscode;
+    public String getCode() {
+        return code;
     }
 
-    public void setSmscode(String smscode) {
-        this.smscode = smscode;
+    public void setCode(String code) {
+        this.code = code;
     }
 }

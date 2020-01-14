@@ -5,21 +5,28 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.tencent.mm.opensdk.modelmsg.SendAuth;
+import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.zfb.zhifabao.MainActivity;
 import com.zfb.zhifabao.R;
 import com.zfb.zhifabao.common.Common;
 import com.zfb.zhifabao.common.app.PresenterFragment;
+import com.zfb.zhifabao.common.factory.Factory;
 import com.zfb.zhifabao.common.factory.presenter.account.LoginContract;
 import com.zfb.zhifabao.common.factory.presenter.account.LoginPresenter;
 
 import net.qiujuer.genius.ui.widget.Loading;
+
+import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -144,10 +151,10 @@ public class LoginFragment extends PresenterFragment<LoginContract.Presenter>
     }
 
     @OnClick(R.id.btn_submit_login)
-     void login(){
-      String phone = et_mobile.getText().toString().trim();
-      String password = et_password.getText().toString().trim();
-      mPresenter.login(phone,password);
+    void login() {
+        String phone = et_mobile.getText().toString().trim();
+        String password = et_password.getText().toString().trim();
+        mPresenter.login(phone, password);
     }
 
     @OnClick(R.id.go_register)
@@ -169,6 +176,7 @@ public class LoginFragment extends PresenterFragment<LoginContract.Presenter>
     void onByWeChatLogin() {
 
     }
+
 
     @OnClick(R.id.im_back)
     void onBack() {

@@ -12,9 +12,8 @@ import com.zfb.zhifabao.R;
 import com.zfb.zhifabao.common.Common;
 import com.zfb.zhifabao.common.app.Activity;
 import com.zfb.zhifabao.flags.account.AccountTrigger;
-import com.zfb.zhifabao.flags.law.ConsultationFragment;
-import com.zfb.zhifabao.flags.law.LookFragment;
-import com.zfb.zhifabao.flags.law.ShowLawFragment;
+import com.zfb.zhifabao.flags.law.consultation.ConsultationFragment;
+import com.zfb.zhifabao.flags.law.consultation.ShowLawListFragment;
 import com.zfb.zhifabao.helper.NavHelper;
 
 public class ConsultationActivity extends Activity implements AccountTrigger, Common.Constance {
@@ -34,9 +33,7 @@ public class ConsultationActivity extends Activity implements AccountTrigger, Co
         super.initWidget();
         setStatuTrans();
         mHelper = new NavHelper(this, getSupportFragmentManager(), R.id.lay_consultation_container);
-        mHelper.add(TO_CONSULTATION_FRAGMENT, new NavHelper.Tab(ConsultationFragment.class, "ConsultationFragment"))
-                .add(TO_SHOW_LAW_FRAGMENT, new NavHelper.Tab(ShowLawFragment.class, "ShowLawFragment"))
-                .add(TO_LOOK_LAW_FRAGMENT, new NavHelper.Tab(LookFragment.class, "LookFragment"));
+        mHelper.add(TO_CONSULTATION_FRAGMENT, new NavHelper.Tab(ConsultationFragment.class, "ConsultationFragment"));
         mHelper.performanceTab(Common.Constance.TO_CONSULTATION_FRAGMENT);
     }
 

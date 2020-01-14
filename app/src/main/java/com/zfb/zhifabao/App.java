@@ -1,7 +1,10 @@
 package com.zfb.zhifabao;
 
+import android.util.Log;
+
 import com.zfb.zhifabao.common.app.Application;
 import com.zfb.zhifabao.common.factory.Factory;
+import cn.jpush.android.api.JPushInterface;
 
 /**
  * 作者：Maodelong
@@ -11,6 +14,8 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Factory.setup();
+        String registerId = JPushInterface.getRegistrationID(Factory.app());
+        Log.e("delong","registerId=========================>"+registerId);
+         Factory.setup();
     }
 }

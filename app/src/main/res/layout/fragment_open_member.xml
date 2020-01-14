@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".flags.member.OpenMemberFragment">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:background="@color/white"
+        />
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:background="@drawable/open_member_bg"
+        app:elevation="0dp"
+        tools:targetApi="lollipop">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/im_back"
+                android:layout_marginLeft="@dimen/len_8"
+                android:layout_width="@dimen/len_24"
+                android:layout_height="@dimen/len_24"
+                android:background="@drawable/ic_chevron_left_black"
+                />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="@dimen/len_6">
+
+                <ImageView
+                    android:id="@+id/im_find_msg"
+                    android:layout_width="@dimen/len_24"
+                    android:layout_height="@dimen/len_24"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/lan"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:layout_width="@dimen/len_16"
+                    android:layout_height="@dimen/len_16"
+                    android:background="@drawable/l_shape"
+                    android:gravity="center"
+                    android:text="8"
+                    android:textColor="#FFFFFF"
+                    android:textSize="@dimen/font_12"
+                    app:layout_constraintBottom_toTopOf="@+id/im_find_msg"
+                    app:layout_constraintEnd_toEndOf="@+id/im_find_msg"
+                    app:layout_constraintTop_toTopOf="@+id/im_find_msg" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="27dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/len_8">
+
+                <ImageView
+                    android:id="@+id/member_pic"
+                    android:layout_width="@dimen/len_116"
+                    android:layout_height="@dimen/len_36"
+                    android:layout_marginTop="@dimen/len_8"
+                    android:background="@drawable/open_member_logo"
+
+                    />
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/len_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        >
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:background="@color/white"
+            android:layout_height="@dimen/len_116">
+
+            <ImageView
+                android:id="@+id/im_member_type_one"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:src="@drawable/selected_member_type_one"
+                android:layout_height="85dp"
+                />
+
+            <ImageView
+                android:id="@+id/im_member_type_two"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:src="@drawable/no_select_member_type_two_bg"
+                android:layout_height="85dp"
+                />
+
+            <ImageView
+                android:id="@+id/im_member_type_three"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:src="@drawable/no_select_member_type_three_bg"
+                android:layout_height="85dp"
+                />
+        </LinearLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/len_10"/>
+
+        <FrameLayout
+            android:id="@+id/fl_weChat_pay"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/len_44"
+            android:layout_margin="@dimen/len_2"
+            android:layout_marginStart="@dimen/len_16"
+            android:layout_marginEnd="@dimen/len_16">
+
+            <ImageView
+                android:src="@drawable/wechat"
+                android:layout_marginLeft="@dimen/len_20"
+                android:layout_gravity="center|start"
+                android:layout_width="@dimen/len_24"
+                android:layout_height="@dimen/len_24"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center_vertical"
+                android:layout_marginStart="@dimen/len_56"
+                android:gravity="center"
+                android:text="微信支付"
+                android:textColor="#001C54"
+                android:textSize="@dimen/len_16" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|end"
+                android:src="@drawable/ic_chevron_right_black_24dp" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

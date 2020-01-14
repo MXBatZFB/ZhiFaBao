@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".flags.contract.custom.SetPartyAInfoFragment">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/len_224"
+        app:elevation="0dp"
+        tools:targetApi="lollipop">
+
+        <FrameLayout
+            android:layout_marginTop="@dimen/len_8"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/len_56"
+            android:background="@color/trans"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/im_back"
+                android:layout_width="@dimen/len_40"
+                android:layout_height="@dimen/len_40"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="@dimen/len_8"
+                android:contentDescription="@string/app_name"
+                android:padding="@dimen/len_6"
+                android:tint="@color/white"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_chevron_left_black" />
+
+            <TextView
+                android:id="@+id/tv_account_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="@dimen/len_8"
+                android:text="定制合同"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_18" />
+        </FrameLayout>
+
+
+        <TextView
+            android:layout_marginStart="@dimen/len_20"
+            android:layout_marginTop="@dimen/len_36"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_24"
+            android:textColor="@color/white"
+            android:text="请填写甲方信息"
+            />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <FrameLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_marginStart="@dimen/len_20"
+        android:layout_marginEnd="@dimen/len_20"
+        android:layout_marginTop="@dimen/len_156"
+        android:layout_height="wrap_content"
+        android:background="@drawable/common_shap"
+        android:baselineAligned="false"
+        app:layout_anchor="@id/appbar"
+        app:layout_anchorGravity="bottom"
+        tools:targetApi="LOLLIPOP">
+
+        <!-- * companyName : 甲方（用人单位）
+                   * unicode : 统一社会信用代码
+                   * legalPersonName : 法定代表人
+                   * registration : 注 册 地
+                   * placeOfBusiness : 经 营 地
+                   * contactNumber : 联系电话-->
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          >
+          <!--公司地址-->
+          <FrameLayout
+              android:layout_marginTop="@dimen/len_8"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+              <LinearLayout
+                  android:orientation="horizontal"
+                  android:layout_marginStart="@dimen/len_14"
+                  android:layout_marginEnd="@dimen/len_14"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+                  <TextView
+                      android:padding="@dimen/len_14"
+                      android:layout_gravity="center_vertical"
+                      android:textColor="#001C54"
+                      android:textSize="@dimen/font_14"
+                      android:text="公司名称："
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"/>
+
+                  <EditText
+                      android:textColor="@color/black"
+                      android:id="@+id/et_company_name"
+                      android:textSize="@dimen/font_14"
+                      android:padding="@dimen/len_14"
+                      android:layout_marginStart="@dimen/len_8"
+                      android:layout_width="match_parent"
+                      android:hint="请输入公司名称"
+                      android:textColorHint="#C1C8D5"
+                      android:background="@null"
+                      android:layout_height="wrap_content"/>
+              </LinearLayout>
+              <View
+                  android:background="#DDDDDD"
+                  android:layout_marginStart="@dimen/len_14"
+                  android:layout_marginEnd="@dimen/len_14"
+                  android:layout_gravity="bottom"
+                  android:layout_width="match_parent"
+                  android:layout_height="1dp"/>
+
+          </FrameLayout>
+
+          <!--统一社会信用代码-->
+          <FrameLayout
+              android:layout_marginTop="@dimen/len_8"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+              <LinearLayout
+                  android:orientation="horizontal"
+                  android:layout_marginStart="@dimen/len_14"
+                  android:layout_marginEnd="@dimen/len_14"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+                  <TextView
+                      android:padding="@dimen/len_14"
+                      android:layout_gravity="center_vertical"
+                      android:textColor="#001C54"
+                      android:textSize="@dimen/font_14"
+                      android:text="统一社会信用代码："
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"/>
+
+                  <EditText
+                      android:textColor="@color/black"
+                      android:id="@+id/et_credit_code"
+                      android:textSize="@dimen/font_14"
+                      android:padding="@dimen/len_14"
+                      android:layout_marginStart="@dimen/len_8"
+                      android:layout_width="match_parent"
+                      android:hint="请输入公司地址"
+                      android:textColorHint="#C1C8D5"
+                      android:background="@null"
+
+                      android:layout_height="wrap_content"/>
+              </LinearLayout>
+              <View
+                  android:background="#DDDDDD"
+                  android:layout_marginStart="@dimen/len_14"
+                  android:layout_marginEnd="@dimen/len_14"
+                  android:layout_gravity="bottom"
+                  android:layout_width="match_parent"
+                  android:layout_height="1dp"/>
+
+          </FrameLayout>
+
+          <!--法定代表人-->
+          <FrameLayout
+              android:layout_marginTop="@dimen/len_8"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+              <LinearLayout
+                  android:orientation="horizontal"
+                  android:layout_marginStart="@dimen/len_14"
+                  android:layout_marginEnd="@dimen/len_14"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+                  <TextView
+                      android:padding="@dimen/len_14"
+                      android:layout_gravity="center_vertical"
+                      android:textColor="#001C54"
+                      android:textSize="@dimen/font_14"
+                      android:text="法定代表人："
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"/>
+l
+                  <EditText
+                      android:textColor="@color/black"
+                      android:id="@+id/et_legal_representative"
+                      android:textSize="@dimen/font_14"
+                      android:padding="@dimen/len_14"
+                      android:layout_marginStart="@dimen/len_8"
+                      android:layout_width="match_parent"
+                      android:hint="请输入姓名"
+                      android:textColorHint="#C1C8D5"
+                      android:background="@null"
+                      android:layout_height="wrap_content"/>
+              </LinearLayout>
+              <View
+                  android:background="#DDDDDD"
+                  android:layout_marginStart="@dimen/len_14"
+                  android:layout_marginEnd="@dimen/len_14"
+                  android:layout_gravity="bottom"
+                  android:layout_width="match_parent"
+                  android:layout_height="1dp"/>
+
+          </FrameLayout>
+
+          <!--注册地-->
+          <FrameLayout
+              android:layout_marginTop="@dimen/len_8"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+              <LinearLayout
+                  android:orientation="horizontal"
+                  android:layout_marginStart="@dimen/len_14"
+                  android:layout_marginEnd="@dimen/len_14"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+                  <TextView
+                      android:padding="@dimen/len_14"
+                      android:layout_gravity="center_vertical"
+                      android:textColor="#001C54"
+                      android:textSize="@dimen/font_14"
+                      android:text="注册地："
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"/>
+
+                  <EditText
+                      android:id="@+id/et_register_place"
+                      android:textSize="@dimen/font_14"
+                      android:padding="@dimen/len_14"
+                      android:textColor="@color/black"
+                      android:layout_marginStart="@dimen/len_8"
+                      android:layout_width="match_parent"
+                      android:hint="请输入联系方式"
+                      android:textColorHint="#C1C8D5"
+                      android:background="@null"
+                      android:layout_height="wrap_content"/>
+              </LinearLayout>
+
+              <View
+                  android:background="#DDDDDD"
+                  android:layout_marginStart="@dimen/len_14"
+                  android:layout_marginEnd="@dimen/len_14"
+                  android:layout_gravity="bottom"
+                  android:layout_width="match_parent"
+                  android:layout_height="1dp"/>
+
+          </FrameLayout>
+
+          <!--经营地-->
+          <FrameLayout
+              android:layout_marginTop="@dimen/len_8"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+              <LinearLayout
+                  android:orientation="horizontal"
+                  android:layout_marginStart="@dimen/len_14"
+                  android:layout_marginEnd="@dimen/len_14"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+                  <TextView
+                      android:padding="@dimen/len_14"
+                      android:layout_gravity="center_vertical"
+                      android:textColor="#001C54"
+                      android:textSize="@dimen/font_14"
+                      android:text="经营地："
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"/>
+
+                  <EditText
+                      android:textColor="@color/black"
+                      android:id="@+id/et_premises"
+                      android:textSize="@dimen/font_14"
+                      android:padding="@dimen/len_14"
+                      android:layout_marginStart="@dimen/len_8"
+                      android:layout_width="match_parent"
+                      android:hint="请输入联系方式"
+                      android:textColorHint="#C1C8D5"
+                      android:background="@null"
+                      android:layout_height="wrap_content"/>
+              </LinearLayout>
+
+              <View
+                  android:background="#DDDDDD"
+                  android:layout_marginStart="@dimen/len_14"
+                  android:layout_marginEnd="@dimen/len_14"
+                  android:layout_gravity="bottom"
+                  android:layout_width="match_parent"
+                  android:layout_height="1dp"/>
+
+          </FrameLayout>
+
+          <!--联系电话-->
+          <FrameLayout
+              android:layout_marginTop="@dimen/len_8"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+              <LinearLayout
+                  android:orientation="horizontal"
+                  android:layout_marginStart="@dimen/len_14"
+                  android:layout_marginEnd="@dimen/len_14"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+                  <TextView
+                      android:padding="@dimen/len_14"
+                      android:layout_gravity="center_vertical"
+                      android:textColor="#001C54"
+                      android:textSize="@dimen/font_14"
+                      android:text="联系电话："
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"/>
+
+                  <EditText
+                      android:textColor="@color/black"
+                      android:id="@+id/et_contract_number"
+                      android:textSize="@dimen/font_14"
+                      android:padding="@dimen/len_14"
+                      android:layout_marginStart="@dimen/len_8"
+                      android:layout_width="match_parent"
+                      android:hint="请输入联系方式"
+                      android:textColorHint="#C1C8D5"
+                      android:background="@null"
+                      android:layout_height="wrap_content"/>
+              </LinearLayout>
+
+              <View
+                  android:background="#DDDDDD"
+                  android:layout_marginStart="@dimen/len_14"
+                  android:layout_marginEnd="@dimen/len_14"
+                  android:layout_gravity="bottom"
+                  android:layout_width="match_parent"
+                  android:layout_height="1dp"/>
+
+          </FrameLayout>
+
+
+
+              <Button
+                  android:id="@+id/btn_next"
+                  android:layout_gravity="center"
+                  android:gravity="center"
+                  android:textSize="@dimen/font_18"
+                  android:text="下一步"
+                  android:layout_margin="@dimen/len_14"
+                  android:background="@drawable/btn_shape_"
+                  android:layout_width="142dp"
+                  android:layout_height="50dp"/>
+
+
+      </LinearLayout>
+
+    </FrameLayout>
+
+</FrameLayout>

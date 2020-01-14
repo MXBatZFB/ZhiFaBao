@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    tools:context=".flags.law.controversy.ShowCaseResultFragment">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/len_28"
+        android:background="@color/white" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/len_56"
+        android:layout_marginTop="@dimen/len_10"
+        android:background="@color/white"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/im_back"
+            android:layout_width="@dimen/len_40"
+            android:layout_height="@dimen/len_40"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/len_2"
+            android:contentDescription="@string/app_name"
+            android:padding="@dimen/len_4"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_chevron_left_black" />
+
+        <TextView
+            android:id="@+id/tv_account_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/len_8"
+            android:text="劳动争议处理"
+            android:textColor="#111111"
+            android:textSize="@dimen/font_18" />
+    </FrameLayout>
+
+    <TextView
+        android:textColor="#0067CB"
+        android:gravity="center"
+        android:background="#E5F1FD"
+        android:text="根据您选择的信息，智法宝判断您遇到了如下问题"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/len_40"
+        android:layout_marginTop="@dimen/len_56"
+        android:textSize="@dimen/font_12"
+        />
+
+    <TextView
+        android:layout_marginLeft="@dimen/len_20"
+        android:textSize="@dimen/font_14"
+        android:textColor="#0067CB"
+        android:layout_marginTop="@dimen/len_116"
+        android:text="为您推荐如下处理方案"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+     <androidx.recyclerview.widget.RecyclerView
+         android:layout_marginTop="@dimen/len_156"
+         android:id="@+id/container_plan"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"/>
+
+</FrameLayout>

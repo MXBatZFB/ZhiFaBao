@@ -26,7 +26,7 @@ public class LookPresenter extends BasePresenter<LookContract.View> implements L
     @Override
     public void lookLaw(String lawName) {
         doType = "content";
-        ConsultationHelper.loadLookFile(lawName, doType, this);
+      //  ConsultationHelper.loadLookFile(lawName, doType, this);
     }
 
     @Override
@@ -37,17 +37,16 @@ public class LookPresenter extends BasePresenter<LookContract.View> implements L
     @Override
     public void lookCaseSuggestion(GetCaseSuggestionModel model) {
         doType = "loadSuggestion";
-        SettleCasesHelper.loadCaseSuggestion(model, this);
+     //   SettleCasesHelper.loadCaseSuggestion(model, this);
     }
 
     @Override
     public void onDataLoaded(ResModel result) {
-        Log.e("delong", "doType>>>>>>>>>>>>>>>>>>>>>>>>>>" + doType);
         if (doType.equals("content")) {
-            GetLookLawResultModel model = (GetLookLawResultModel) result.getResult();
+            GetLookLawResultModel model = (GetLookLawResultModel) result.getData();
             getmView().onLookSuccess(model);
         } else if (doType.equals("loadSuggestion")) {
-            GetCaseSuggestionResultModel model = (GetCaseSuggestionResultModel) result.getResult();
+            GetCaseSuggestionResultModel model = (GetCaseSuggestionResultModel) result.getData();
             getmView().onLookSuggestionSuccess(model);
         }
     }

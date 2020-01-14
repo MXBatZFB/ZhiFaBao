@@ -4,22 +4,37 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.zfb.zhifabao.R;
 import com.zfb.zhifabao.common.Common;
+import com.zfb.zhifabao.common.app.Application;
 import com.zfb.zhifabao.common.app.PresenterActivity;
+import com.zfb.zhifabao.common.factory.model.api.assess.SubmitResultModel;
 import com.zfb.zhifabao.common.factory.model.api.consultation.TestBean;
 import com.zfb.zhifabao.common.factory.presenter.assess.AssessContract;
 import com.zfb.zhifabao.common.factory.presenter.assess.AssessPresenter;
+import com.zfb.zhifabao.common.utils.CheckUtils;
 
+import androidx.annotation.RequiresApi;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 public class CareerQuizActivity extends PresenterActivity<AssessContract.Presenter> implements AssessContract.View, Common.Constance {
 
     private int mType;
+    @BindView(R.id.et_epName)
+    EditText epName;
+    @BindView(R.id.ep_id)
+    EditText epId;
+    private String name;
+    private String id;
+
 
     public static void show(Context context) {
         context.startActivity(new Intent(context, CareerQuizActivity.class));
@@ -41,22 +56,35 @@ public class CareerQuizActivity extends PresenterActivity<AssessContract.Present
         return new AssessPresenter(this);
     }
 
+
+    //测试题类型 0:职能 1:法律 2:心理
     @OnClick(R.id.im_law)
     void onDoLawAssess() {
-        mType = ASSESS_TYPE_LAW;
-        mPresenter.getAssessQuestion("JiBenFaCeShi");
+        if (checkEmployeeInfo()){
+            mType = ASSESS_TYPE_LAW;
+            mPresenter.getAssessQuestion("1");
+        }
+
     }
 
+    //测试题类型 0:职能 1:法律 2:心理
     @OnClick(R.id.im_function)
     void onDoFunctionAssess() {
-        mType = ASSESS_TYPE_FUNCTION;
-        mPresenter.getAssessQuestion("BaoXianCongYeRenYuanCeShi");
+        if (checkEmployeeInfo()){
+            mType = ASSESS_TYPE_FUNCTION;
+            mPresenter.getAssessQuestion("0");
+        }
+
     }
 
+    //测试题类型 0:职能 1:法律 2:心理
     @OnClick(R.id.im_psychology)
     void onDoPsychologyAssess() {
-        mType = ASSESS_TYPE_PSYCHOLOGY;
-        mPresenter.getAssessQuestion("XinLiCeShi");
+        if (checkEmployeeInfo()){
+            mType = ASSESS_TYPE_PSYCHOLOGY;
+            mPresenter.getAssessQuestion("2");
+        }
+
     }
 
 
@@ -78,9 +106,27 @@ public class CareerQuizActivity extends PresenterActivity<AssessContract.Present
         }
     }
 
+    private boolean checkEmployeeInfo(){
+         name = epName.getText().toString().trim();
+         id  = epId.getText().toString().trim();
+        if (!(name.length()>0&&id.length()>0)){
+            Application.showToast("请先输入测试者的信息！");
+            return false;
+        }
+        if(!CheckUtils.isIDNumber(id)){
+            Application.showToast("身份证号码不正确！");
+            return false;
+        }
+        return true;
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void doAssess(TestBean testBean) {
+        Log.e("delong.","TestBean》》》》》》"+testBean);
         if (testBean != null) {
+            testBean.setEmployeeBean(new SubmitResultModel.EmployeeBean(id,name));
             AssessActivity.show(this, testBean, mType);
         }
 

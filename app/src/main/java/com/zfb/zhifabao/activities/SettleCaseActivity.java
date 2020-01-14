@@ -12,8 +12,9 @@ import com.zfb.zhifabao.R;
 import com.zfb.zhifabao.common.Common;
 import com.zfb.zhifabao.common.app.Activity;
 import com.zfb.zhifabao.flags.account.AccountTrigger;
-import com.zfb.zhifabao.flags.law.LookFragment;
-import com.zfb.zhifabao.flags.law.SettleCasesFragment;
+import com.zfb.zhifabao.flags.law.controversy.LookPlanFragment;
+import com.zfb.zhifabao.flags.law.controversy.SettleCasesFragment;
+import com.zfb.zhifabao.flags.law.controversy.ShowCaseResultFragment;
 import com.zfb.zhifabao.helper.NavHelper;
 
 public class SettleCaseActivity extends Activity implements AccountTrigger, Common.Constance {
@@ -33,9 +34,10 @@ public class SettleCaseActivity extends Activity implements AccountTrigger, Comm
         setStatuTrans();
 
         mNavHelper = new NavHelper(this, getSupportFragmentManager(), R.id.lay_settle_cases_container);
-        mNavHelper.add(TO_LOOK_LAW_FRAGMENT, new NavHelper.Tab(LookFragment.class, LookFragment.class.getName()))
-                .add(Common.Constance.TO_SETTLE_CASES_FRAGMENT, new NavHelper.Tab(SettleCasesFragment.class, SettleCasesFragment.class.getName()));
-        mNavHelper.performanceTab(Common.Constance.TO_SETTLE_CASES_FRAGMENT);
+        mNavHelper.add(TO_LOOK_RESULT_FRAGMENT, new NavHelper.Tab(ShowCaseResultFragment.class, ShowCaseResultFragment.class.getName()))
+                .add(Common.Constance.TO_SETTLE_CASES_FRAGMENT, new NavHelper.Tab(SettleCasesFragment.class, SettleCasesFragment.class.getName()))
+                .add(TO_LOOK_FRAGMENT,new NavHelper.Tab(LookPlanFragment.class,LookPlanFragment.class.getName()));
+       mNavHelper.performanceTab(Common.Constance.TO_SETTLE_CASES_FRAGMENT);
     }
 
     /**

@@ -12,14 +12,12 @@ import android.util.Property;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-
 import com.zfb.zhifabao.MainActivity;
 import com.zfb.zhifabao.R;
 import com.zfb.zhifabao.common.app.Activity;
 import com.zfb.zhifabao.common.app.Application;
 import com.zfb.zhifabao.common.factory.persistence.Account;
 import com.zfb.zhifabao.permission.PermissionFragment;
-
 import net.qiujuer.genius.res.Resource;
 import net.qiujuer.genius.ui.compat.UiCompat;
 
@@ -87,8 +85,6 @@ public class LauncherActivity extends Activity implements PermissionFragment.OnS
                         skip();
                     }
                 }, 1500);
-
-
     }
 
     /**
@@ -132,7 +128,6 @@ public class LauncherActivity extends Activity implements PermissionFragment.OnS
         });
         valueAnimator.start();
     }
-
 
     @Override
     public void onClickSubmit(boolean requestPermIsSucceed) {

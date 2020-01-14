@@ -58,6 +58,7 @@ public class AccountActivity extends Activity implements AccountTrigger, Common.
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(Color.TRANSPARENT);
+            //SYSTEM_UI_FLAG_LAYOUT_STABLE   SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
             window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
     }

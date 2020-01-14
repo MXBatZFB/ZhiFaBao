@@ -18,12 +18,12 @@ public class ReviewPresenter extends BasePresenter<ReviewContract.View> implemen
 
     @Override
     public void getContractType() {
-        ContractHelper.getContractType(this);
+        //ContractHelper.getContractType(this);
     }
 
     @Override
     public void onDataLoaded(ResModel<ContractResultMode> result) {
-        getmView().onGetTypeSuccess(result.getResult());
+        getmView().onGetTypeSuccess(result.getData());
     }
 
     @Override

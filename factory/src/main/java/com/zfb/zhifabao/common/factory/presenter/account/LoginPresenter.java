@@ -3,6 +3,7 @@ package com.zfb.zhifabao.common.factory.presenter.account;
 import android.text.TextUtils;
 
 import com.zfb.zhifabao.common.Common;
+import com.zfb.zhifabao.common.factory.Factory;
 import com.zfb.zhifabao.common.factory.R;
 import com.zfb.zhifabao.common.factory.data.AccountHelper;
 import com.zfb.zhifabao.common.factory.data.DataSource;
@@ -13,6 +14,8 @@ import com.zfb.zhifabao.common.factory.model.api.account.UserInfo;
 import com.zfb.zhifabao.common.factory.presenter.BasePresenter;
 
 import java.util.regex.Pattern;
+
+import cn.jpush.android.api.JPushInterface;
 
 import static com.zfb.zhifabao.common.app.Application.getInstance;
 
@@ -30,10 +33,9 @@ public class LoginPresenter extends BasePresenter<LoginContract.View>
         if (view == null) {
             return;
         }
-
         if (checkPhone(numberPhone)) {
             //创建Login请求的参数model
-            LoginModel model = new LoginModel(numberPhone, password);
+            LoginModel model = new LoginModel(numberPhone, password, JPushInterface.getRegistrationID(Factory.app()));
             //发起请求
             AccountHelper.login(model, this);
         }
@@ -43,7 +45,7 @@ public class LoginPresenter extends BasePresenter<LoginContract.View>
     public void msgLogin(String numberPhone, String code) {
         start();
         if (checkPhone(numberPhone)) {
-            AccountHelper.byMsglogin(new MsgLoginModel(numberPhone, code), this);
+            AccountHelper.byMsglogin(new MsgLoginModel(numberPhone, code,JPushInterface.getRegistrationID(Factory.app())), this);
         }
     }
 
@@ -59,15 +61,14 @@ public class LoginPresenter extends BasePresenter<LoginContract.View>
 
     @Override
     public void onDataLoaded(ResModel<UserInfo> result) {
-
         LoginContract.View view = getmView();
         if (view == null) {
             return;
         }
-        if (result.getResult().getToken() != null) {
+        if (result.getData().getToken() != null) {
             view.loginSuccess();
         } else {
-            view.showError(result.getMessage());
+            view.showError(result.getMsg());
         }
 
     }

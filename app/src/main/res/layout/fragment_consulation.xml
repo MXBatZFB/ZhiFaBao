@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".flags.law.ConsultationFragment">
+    tools:context=".flags.law.consultation.ConsultationFragment">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -45,16 +45,27 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/len_28"
+
             android:layout_marginEnd="18dp"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="劳动法"
-                android:textColor="#001C54"
-                android:textSize="@dimen/font_20" />
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <View
+                    android:background="#007AF0"
+                    android:layout_width="5dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="@dimen/len_20"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/len_28"
+                    android:text="相关劳动法"
+                    android:textColor="#001C54"
+                    android:textSize="@dimen/font_20" />
+            </FrameLayout>
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -63,15 +74,71 @@
                 android:padding="@dimen/len_8">
 
                 <TextView
+                    android:id="@+id/select_law_type"
+                    android:layout_marginStart="@dimen/len_28"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/len_84"
+                    android:hint="请选择类别"
+                    android:textColorHint="#B2BACB" />
+
+                <Button
+                    android:id="@+id/btn_law_find_type"
+                    android:layout_width="65dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="end"
+                    android:background="@drawable/x_shape"
+                    android:text="查询" />
+            </FrameLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="@dimen/len_8"
+                android:background="#DDDDDD" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginEnd="18dp"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <View
+                android:background="#007AF0"
+                android:layout_width="5dp"
+                  android:layout_gravity="center_vertical"
+                android:layout_height="@dimen/len_20"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/len_28"
+                android:text="当地劳动法条列"
+                android:textColor="#001C54"
+                android:textSize="@dimen/font_20" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/len_16"
+                android:padding="@dimen/len_8">
+
+                <TextView
+                    android:layout_marginStart="@dimen/len_28"
                     android:id="@+id/select_city"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="@dimen/len_84"
-                    android:gravity="center"
-
-                    android:text="请选择城市"
-                    android:textColor="#B2BACB" />
+                    android:hint="请选择城市"
+                    android:textColorHint="#B2BACB"/>
 
                 <Button
                     android:id="@+id/btn_law_find"
@@ -92,16 +159,27 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/len_28"
-            android:layout_marginTop="@dimen/len_16"
+
             android:layout_marginEnd="18dp"
             android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="相关案例"
-                android:textColor="#001C54"
-                android:textSize="@dimen/font_20" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <View
+                    android:background="#007AF0"
+                    android:layout_width="5dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="@dimen/len_20"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/len_28"
+                    android:text="相关案列"
+                    android:textColor="#001C54"
+                    android:textSize="@dimen/font_20" />
+            </FrameLayout>
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -110,14 +188,78 @@
                 android:padding="@dimen/len_8">
 
                 <TextView
-                    android:id="@+id/select_type"
+                    android:layout_marginStart="@dimen/len_28"
+                    android:id="@+id/select_controversy_type"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/len_84"
+                    android:hint="请选择争议类型"
+                    android:textColorHint="#B2BACB" />
 
-                    android:gravity="center"
-                    android:text="请选择争你要查看的案列"
-                    android:textColor="#B2BACB" />
+                <Button
+                    android:id="@+id/btn_case_find"
+                    android:layout_width="65dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="end"
+                    android:background="@drawable/x_shape"
+                    android:text="查询" />
+            </FrameLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="@dimen/len_8"
+                android:background="#DDDDDD" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="18dp"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <View
+                    android:background="#007AF0"
+                    android:layout_width="5dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="@dimen/len_20"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/len_28"
+                    android:text="法律流程"
+                    android:textColor="#001C54"
+                    android:textSize="@dimen/font_20" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/len_16"
+                android:padding="@dimen/len_8">
+
+                <TextView
+                    android:id="@+id/select_precess"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/len_28"
+                    android:layout_marginEnd="@dimen/len_84"
+                    android:hint="请选择流程"
+                    android:textColorHint="#B2BACB" />
+
+                <Button
+                    android:id="@+id/btn_precess_find"
+                    android:layout_width="65dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="end"
+                    android:background="@drawable/x_shape"
+                    android:text="查询" />
             </FrameLayout>
 
             <View
@@ -127,35 +269,5 @@
                 android:background="#DDDDDD" />
         </LinearLayout>
     </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/fl_mould_download"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/len_56"
-        android:background="@color/white"
-        android:padding="@dimen/len_16">
-
-        <TextView
-            android:id="@+id/select_process_documents"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/len_8"
-            android:layout_gravity="start|center_vertical"
-            android:layout_marginStart="@dimen/len_28"
-            android:gravity="center"
-            android:text="法律流程模板"
-            android:textColor="#001C54"
-            android:textSize="@dimen/len_16" />
-
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|end"
-            android:src="@drawable/ic_chevron_right_black_24dp" />
-    </FrameLayout>
-
 
 </FrameLayout>

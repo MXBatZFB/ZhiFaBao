@@ -7,69 +7,79 @@ import java.util.List;
  * 邮箱：mdl_android@163.com
  */
 public class SubmitResultModel {
+
     /**
-     * ceshitype : XinLiCeShi
-     * answers : [{"questionNumber":"1","answerName":"A"},{"questionNumber":"2","answerName":"B"},{"questionNumber":"1","answerName":"C"},{"questionNumber":"1","answerName":"D"}]
+     * type : 2
+     * paperId : 1
+     * employee : {"idCard":"44058219960309665X","name":"陈杰"}
+     * optionIdList : [1,7]
      */
 
-    private String ceshitype;
-    private List<AnswersBean> answers;
+    private String type;
+    private String paperId;
+    private EmployeeBean employee;
+    private List<String> optionIdList;
 
-    @Override
-    public String toString() {
-        return "SubmitResultModel{" +
-                "ceshitype='" + ceshitype + '\'' +
-                ", answers=" + answers +
-                '}';
+    public String getType() {
+        return type;
     }
 
-    public String getCeshitype() {
-        return ceshitype;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public void setCeshitype(String ceshitype) {
-        this.ceshitype = ceshitype;
+    public String getPaperId() {
+        return paperId;
     }
 
-    public List<AnswersBean> getAnswers() {
-        return answers;
+    public void setPaperId(String paperId) {
+        this.paperId = paperId;
     }
 
-    public void setAnswers(List<AnswersBean> answers) {
-        this.answers = answers;
+    public EmployeeBean getEmployee() {
+        return employee;
     }
 
-    public static class AnswersBean {
+    public void setEmployee(EmployeeBean employee) {
+        this.employee = employee;
+    }
+
+    public List<String> getOptionIdList() {
+        return optionIdList;
+    }
+
+    public void setOptionIdList(List<String> optionIdList) {
+        this.optionIdList = optionIdList;
+    }
+
+    public static class EmployeeBean {
         /**
-         * questionNumber : 1
-         * answerName : A
+         * idCard : 44058219960309665X
+         * name : 陈杰
          */
 
-        private String questionNumber;
-        private String answerName;
+        private String idCard;
+        private String name;
 
-        @Override
-        public String toString() {
-            return "AnswersBean{" +
-                    "questionNumber='" + questionNumber + '\'' +
-                    ", answerName='" + answerName + '\'' +
-                    '}';
+        public EmployeeBean(String idCard, String name) {
+            this.idCard = idCard;
+            this.name = name;
         }
 
-        public String getQuestionNumber() {
-            return questionNumber;
+        public String getIdCard() {
+            return idCard;
         }
 
-        public void setQuestionNumber(String questionNumber) {
-            this.questionNumber = questionNumber;
+        public void setIdCard(String idCard) {
+            this.idCard = idCard;
         }
 
-        public String getAnswerName() {
-            return answerName;
+        public String getName() {
+            return name;
         }
 
-        public void setAnswerName(String answerName) {
-            this.answerName = answerName;
+        public void setName(String name) {
+            this.name = name;
         }
     }
 }

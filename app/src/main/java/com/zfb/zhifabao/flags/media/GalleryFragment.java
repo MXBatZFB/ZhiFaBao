@@ -93,7 +93,6 @@ public class GalleryFragment extends BottomSheetDialogFragment implements Galley
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-
             final Window window = getWindow();
             if (window == null) {
                 return;

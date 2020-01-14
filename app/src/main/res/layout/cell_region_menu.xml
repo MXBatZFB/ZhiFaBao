@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+  <TextView
+      android:id="@+id/tv_menu"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:textSize="@dimen/font_14"
+      android:textColor="#001C54"
+      android:padding="@dimen/len_4"
+      android:text="A"
+      android:gravity="center"
+      />
+</FrameLayout>

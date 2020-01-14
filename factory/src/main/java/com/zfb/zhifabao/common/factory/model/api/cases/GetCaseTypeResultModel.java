@@ -5,53 +5,37 @@ import java.util.List;
 /**
  * 作者：Maodelong
  * 邮箱：mdl_android@163.com
+ * 根据原被告获取相应案件类型结果的封装类
  */
 public class GetCaseTypeResultModel {
 
 
-    private List<CaseTypesBean> caseTypes;
+    private List<CaseTypeListBean> caseTypeList;
 
-    public List<CaseTypesBean> getCaseTypes() {
-        return caseTypes;
+    public List<CaseTypeListBean> getCaseTypeList() {
+        return caseTypeList;
     }
 
-    public void setCaseTypes(List<CaseTypesBean> caseTypes) {
-        this.caseTypes = caseTypes;
+    public void setCaseTypeList(List<CaseTypeListBean> caseTypeList) {
+        this.caseTypeList = caseTypeList;
     }
 
-    public static class CaseTypesBean {
+    public static class CaseTypeListBean {
         /**
-         * casesTypeName : 劳资双方存在合同关系
-         * lawFileNames : ["违法解除劳动合同赔偿金额","补偿加班工资/节假日工资/休假工资","对劳动者名誉的赔偿","确认解除（终止）劳动合同或者请求继续履行"]
+         * type : 变更劳动合同
          */
 
         private boolean isSelected;
-        private String casesTypeName;
-        private List<String> lawFileNames;
+        private String type;
 
-
-        public boolean isSelected() {
-            return isSelected;
+        public String getType() {
+            return type;
         }
 
-        public void setSelected(boolean selected) {
-            isSelected = selected;
+        public void setType(String type) {
+            this.type = type;
         }
 
-        public String getCasesTypeName() {
-            return casesTypeName;
-        }
 
-        public void setCasesTypeName(String casesTypeName) {
-            this.casesTypeName = casesTypeName;
-        }
-
-        public List<String> getLawFileNames() {
-            return lawFileNames;
-        }
-
-        public void setLawFileNames(List<String> lawFileNames) {
-            this.lawFileNames = lawFileNames;
-        }
     }
 }

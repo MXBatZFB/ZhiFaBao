@@ -1,8 +1,11 @@
 package com.zfb.zhifabao.flags.user;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.view.View;
+import android.widget.RadioGroup;
 
 import com.bumptech.glide.Glide;
 import com.yalantis.ucrop.UCrop;
@@ -14,6 +17,7 @@ import com.zfb.zhifabao.common.app.PresenterFragment;
 import com.zfb.zhifabao.common.factory.presenter.user.UpdateInfoContract;
 import com.zfb.zhifabao.common.factory.presenter.user.UpdateInfoPresenter;
 import com.zfb.zhifabao.common.widget.cyclerview.PortraitView;
+import com.zfb.zhifabao.flags.main.CommonTrigger;
 import com.zfb.zhifabao.flags.media.GalleryFragment;
 
 import net.qiujuer.genius.ui.widget.Button;
@@ -37,17 +41,44 @@ public class UpdateFragment extends PresenterFragment<UpdateInfoContract.present
     Loading loading;
     @BindView(R.id.edit_userName)
     EditText edit_userName;
-    @BindView(R.id.edit_companyName)
-    EditText edit_companyName;
+    @BindView(R.id.rg_sex)
+    RadioGroup rg_sex;
     private String portraitPath;
+    private  String sex="n";
 
     public UpdateFragment() {
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+    }
+
+    @Override
+    protected void initWidget(View root) {
+        super.initWidget(root);
+        rg_sex.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId){
+                    case R.id.rd_m:
+                        sex="m";
+                        break;
+                    case R.id.rd_n:
+                        sex="n";
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
     }
 
     @Override
     protected int getContentLayoutId() {
         return R.layout.fragment_updata;
     }
+
 
     @OnClick(R.id.im_portrait)
     void onPortraitClick() {
@@ -107,8 +138,8 @@ public class UpdateFragment extends PresenterFragment<UpdateInfoContract.present
     @OnClick(R.id.btn_submit)
     void onSubmitClick() {
         String userName = edit_userName.getText().toString().trim();
-        String companyName = edit_companyName.getText().toString().trim();
-        mPresenter.update(userName, companyName, portraitPath);
+        if (sex!=null)
+        mPresenter.update(userName, sex, portraitPath);
     }
 
     @Override
@@ -118,7 +149,6 @@ public class UpdateFragment extends PresenterFragment<UpdateInfoContract.present
 
     @Override
     public void updateSuccess() {
-        MainActivity.show(Objects.requireNonNull(getContext()));
-        Objects.requireNonNull(getActivity()).finish();
+        getActivity().finish();
     }
 }

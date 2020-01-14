@@ -24,7 +24,6 @@ public interface DataSource {
      */
     interface  SucceedCallback<T>{
         void onDataLoaded(T result);
-
     }
 
     /**

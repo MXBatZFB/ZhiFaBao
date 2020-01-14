@@ -26,7 +26,6 @@ public class AssessPresenter extends BasePresenter<AssessContract.View>
     @Override
     public void onDataLoaded(TestBean result) {
         Log.e("AssessPresenter", result.toString());
-
         getmView().doAssess(result);
     }
 

@@ -1,6 +1,8 @@
 package com.zfb.zhifabao.common.app;
 
 import android.os.Bundle;
+import android.util.Log;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.List;
@@ -59,7 +61,6 @@ public abstract class Activity extends AppCompatActivity {
 
     /**
      * 初始化参数
-     *
      * @param Bundle Bundle
      * @return boolean
      */
@@ -81,18 +82,15 @@ public abstract class Activity extends AppCompatActivity {
         List<Fragment> fragments = getSupportFragmentManager().getFragments();
         if (fragments.size() > 0){
             for (Fragment fragment:fragments){
-                if (fragment instanceof Fragment){
+                if (fragment instanceof com.zfb.zhifabao.common.app.Fragment){
+                    Log.e("DELONG","LAILE");
                     if (((com.zfb.zhifabao.common.app.Fragment) fragment).onBackPressed()){
                         return;
                     }
                 }
             }
         }
-
         super.onBackPressed();
         finish();
     }
-
-
-
 }

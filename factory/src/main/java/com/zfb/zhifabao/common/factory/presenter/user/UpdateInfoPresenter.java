@@ -17,10 +17,10 @@ public class UpdateInfoPresenter extends BasePresenter<UpdateInfoContract.view>
 
     @Override
     public void onDataLoaded(ResModel<UserInfo> result) {
-        if (result.getCode() == 6234) {
+        if (result.getMsg().contains("success")) {
             getmView().updateSuccess();
         } else {
-            getmView().showError(result.getMessage());
+            getmView().showError(result.getMsg());
         }
     }
 
@@ -30,15 +30,15 @@ public class UpdateInfoPresenter extends BasePresenter<UpdateInfoContract.view>
     }
 
     @Override
-    public void update(String userName, String companyName, String photoFilePath) {
+    public void update(String userName, String sex, String photoFilePath) {
         start();
         final UpdateInfoContract.view view = getmView();
         if (view == null)
             return;
-        if (TextUtils.isEmpty(photoFilePath) || TextUtils.isEmpty(userName) || TextUtils.isEmpty(companyName)) {
+        if (TextUtils.isEmpty(photoFilePath) || TextUtils.isEmpty(userName) || TextUtils.isEmpty(sex)) {
             view.showError("请完善信息，基本信息不能为空！");
         } else {
-            UploaderHelper.update(userName, companyName, photoFilePath, this);
+            UploaderHelper.update(userName, sex, photoFilePath, this);
         }
     }
 

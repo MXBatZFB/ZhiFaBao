@@ -7,8 +7,8 @@ public class ResModel<T> {
      * data :返回的数据
      */
     private int code;
-    private String message;
-    private T result;
+    private String msg;
+    private T data;
 
     public ResModel() {
     }
@@ -21,28 +21,29 @@ public class ResModel<T> {
         this.code = code;
     }
 
-    public String getMessage() {
-        return message;
+    public String getMsg() {
+        return msg;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
-    public T getResult() {
-        return result;
+    public T getData() {
+        return data;
     }
 
-    public void setResult(T result) {
-        this.result = result;
+    public void setData(T data) {
+        this.data = data;
     }
 
     @Override
     public String toString() {
         return "ResModel{" +
                 "code=" + code +
-                ", messgage='" + message + '\'' +
-                ", result=" + result +
+                ", msg='" + msg + '\'' +
+                ", data=" + data +
                 '}';
     }
 }
+

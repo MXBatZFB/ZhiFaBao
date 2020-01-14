@@ -82,7 +82,6 @@ public class ContractReviewFragment extends PresenterFragment<ReviewContract.Pre
         } else {
             App.showToast("请选择上传方式");
         }
-
     }
 
     @OnClick(R.id.selected_up_method)
@@ -91,7 +90,7 @@ public class ContractReviewFragment extends PresenterFragment<ReviewContract.Pre
         List<String> data = new ArrayList<>();
         data.add("文件");
         data.add("拍照");
-        model.setResult(data);
+        model.setData(data);
         ReviewDialogFragment fragment = new ReviewDialogFragment(this, model, 2);
         fragment.show(getChildFragmentManager(), ReviewDialogFragment.class.getName());
     }
@@ -121,7 +120,7 @@ public class ContractReviewFragment extends PresenterFragment<ReviewContract.Pre
     @Override
     public void onGetTypeSuccess(ContractResultMode model) {
         ResModel resModel = new ResModel();
-        resModel.setResult(model.getTypes());
+        resModel.setData(model.getTypes());
         ReviewDialogFragment fragment = new ReviewDialogFragment(this, resModel, 1);
         fragment.show(getChildFragmentManager(), ReviewDialogFragment.class.getName());
     }

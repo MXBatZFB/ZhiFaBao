@@ -3,12 +3,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".flags.contract.MyContractFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="@dimen/len_56"
+        android:layout_marginTop="@dimen/len_8"
+        android:background="@color/white"
+        android:gravity="center">
 
+        <ImageView
+            android:id="@+id/im_back"
+            android:layout_width="@dimen/len_28"
+            android:layout_height="@dimen/len_28"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/len_8"
+            android:contentDescription="@string/app_name"
+            android:scaleType="fitXY"
+            android:singleLine="false"
+            android:src="@drawable/ic_chevron_left_black"
+            android:tint="@color/black" />
+
+        <TextView
+            android:id="@+id/show_look_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:maxLines="1"
+            android:padding="@dimen/len_8"
+            android:text="我的合同"
+            android:textColor="#111111"
+            android:textSize="@dimen/font_18" />
+    </FrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="@dimen/len_56"
+        android:id="@+id/rv_my_contract"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="154dp"
+            android:layout_height="154dp"
+            android:src="@drawable/template_icon_blank"/>
+
+        <TextView
+            android:textSize="@dimen/font_16"
+            android:layout_marginTop="@dimen/len_10"
+            android:textColor="#AAAAAA"
+            android:text="亲，当前没有任何数据哦～"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+    </LinearLayout>
 </FrameLayout>

@@ -7,8 +7,6 @@
         <item name="actionOverflowButtonStyle">@style/Widget.ActionButton.Overflow</item>
         <item name="actionOverflowMenuStyle">@style/Widget.PopupMenu.Overflow</item>
          -->
-
-
         <item name="colorControlNormal">@color/white_alpha_240</item>
         <item name="colorControlActivated">@color/textPrimary</item>
     </style>
@@ -40,6 +38,5 @@
         <item name="android:textSize">?attr/toolbarTitleSize</item>
         <item name="android:textColor">?attr/toolbarTitleColor</item>
     </style>
-
 
 </resources>

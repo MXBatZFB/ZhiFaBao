@@ -1,28 +1,39 @@
 package com.zfb.zhifabao.common.factory.model.api.account;
 
 public class LoginModel {
-    private String phonenumber;
+    private String phone;
     private String passwd;
+    private String jPushRegisterId;
 
-    public LoginModel(String username, String passwd) {
-        this.phonenumber = username;
+    public LoginModel(String phonenumber, String passwd, String jPushRegisterId) {
+        this.phone = phonenumber;
         this.passwd = passwd;
+        this.jPushRegisterId = jPushRegisterId;
     }
 
     @Override
     public String toString() {
         return "LoginModel{" +
-                "username='" + phonenumber + '\'' +
-                ", password='" + passwd + '\'' +
+                "phonenumber='" + phone + '\'' +
+                ", passwd='" + passwd + '\'' +
+                ", jPushRegisterId='" + jPushRegisterId + '\'' +
                 '}';
     }
 
-    public String getPhonenumber() {
-        return phonenumber;
+    public String getjPushRegisterId() {
+        return jPushRegisterId;
     }
 
-    public void setPhonenumber(String phonenumber) {
-        this.phonenumber = phonenumber;
+    public void setjPushRegisterId(String jPushRegisterId) {
+        this.jPushRegisterId = jPushRegisterId;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getPasswd() {
@@ -32,4 +43,5 @@ public class LoginModel {
     public void setPasswd(String passwd) {
         this.passwd = passwd;
     }
+
 }

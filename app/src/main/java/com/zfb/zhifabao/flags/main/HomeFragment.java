@@ -5,11 +5,12 @@ import android.graphics.Color;
 import android.os.Build;
 import androidx.annotation.RequiresApi;
 import com.google.android.material.appbar.AppBarLayout;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
@@ -20,22 +21,27 @@ import com.zfb.zhifabao.activities.CareerQuizActivity;
 import com.zfb.zhifabao.activities.ConsultationActivity;
 import com.zfb.zhifabao.activities.ContractFormulationActivity;
 import com.zfb.zhifabao.activities.ContractReviewActivity;
+import com.zfb.zhifabao.activities.MemberActivity;
 import com.zfb.zhifabao.activities.MyContractActivity;
 import com.zfb.zhifabao.activities.SettleCaseActivity;
 import com.zfb.zhifabao.activities.WebActivity;
+import com.zfb.zhifabao.activities.ZFBMessageActivity;
+import com.zfb.zhifabao.common.Common;
 import com.zfb.zhifabao.common.app.Fragment;
-
+import com.zfb.zhifabao.common.factory.persistence.Account;
+import com.zfb.zhifabao.common.widget.app.GeneralDialog;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 
 public class HomeFragment extends Fragment {
+    @BindView(R.id.tvCity)
+    TextView mCity;
     @BindView(R.id.tv_time)
     TextView mTime;
     @BindView(R.id.appbar)
@@ -53,8 +59,7 @@ public class HomeFragment extends Fragment {
     @Override
     protected void initWidget(View root) {
         super.initWidget(root);
-
-        Glide.with(this)
+        Glide.with(getActivity())
                 .load(R.drawable.head_backgroud)
                 .into(new ViewTarget<View, GlideDrawable>(mAppbar) {
                     @Override
@@ -62,6 +67,8 @@ public class HomeFragment extends Fragment {
                         this.view.setBackground(resource.getCurrent());
                     }
                 });
+         String city = getArguments().getString(Common.Constance.LOOK_CONTRACT_FILE_URL,"武钢");
+       mCity.setText(city);
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd");
         String time = dateFormat.format(new Date());
         mTime.setText(time);
@@ -89,8 +96,8 @@ public class HomeFragment extends Fragment {
                 weekStr = "星期日";
                 break;
         }
-        mWeek.setText(weekStr);
 
+        mWeek.setText(weekStr);
         List<String> bannerList = new ArrayList<>();
         bannerList.add("https://weilong-1.oss-cn-shenzhen.aliyuncs.com/image/YYYY09/message_banner_01.png");
         bannerList.add("https://weilong-1.oss-cn-shenzhen.aliyuncs.com/image/YYYY09/message_banner_02.png");
@@ -111,7 +118,6 @@ public class HomeFragment extends Fragment {
                     }
                 });
     }
-
 
     public String getWeek() {
         // 再转换为时间
@@ -135,7 +141,6 @@ public class HomeFragment extends Fragment {
         Date strtodate = formatter.parse(strDate, pos);
         return strtodate;
     }
-
 
     @Override
     public void onAttach(Context context) {
@@ -165,30 +170,78 @@ public class HomeFragment extends Fragment {
         }
     }
 
+    @OnClick(R.id.im_look_msg)
+    void lookMsg(){
+        ZFBMessageActivity.show(getActivity());
+    }
+
 
     @OnClick(R.id.im_zixun)
     void zixun() {
-        ConsultationActivity.show(getContext());
+        //if (checkMemberStatus()){
+          ConsultationActivity.show(getContext());
+        //}
+    }
+
+
+    public boolean checkMemberStatus(){
+        int memberType = Account.getUser().getMemberType();
+        Log.e("delong","memberType==================="+memberType);
+        //判断是否是会员，0表示无会员，1表示月会员，2表示季度会员,3表示年会员
+        if (memberType==0){//无会员 弹出对话框，去开通会员
+            View view = getLayoutInflater().inflate(R.layout.member_dialog,null);
+            TextView tvCancel = view.findViewById(R.id.tvCancel);
+            TextView tvOpenMember = view.findViewById(R.id.tv_open_member);
+            GeneralDialog dialog = new GeneralDialog(getContext(),0,0,view,R.style.DialogTheme);
+            dialog.setCancelable(false);
+            tvCancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.cancel();
+                }
+            });
+
+            tvOpenMember.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //跳转到开通会员的Fragment
+                    MemberActivity.show(getContext());
+                    dialog.cancel();
+                }
+            });
+            dialog.show();
+            return false;
+        }else {
+           return true;
+        }
     }
 
     @OnClick(R.id.im_settle)
     void settleCases() {
-        SettleCaseActivity.show(getActivity());
+      //  if (checkMemberStatus()){
+            SettleCaseActivity.show(getActivity());
+      //  }
     }
 
     @OnClick(R.id.im_quiz)
     void quiz() {
-        CareerQuizActivity.show(getActivity());
+//        if (checkMemberStatus()){
+            CareerQuizActivity.show(getActivity());
+//        }
     }
 
     @OnClick(R.id.im_contract_review)
     void contractReview() {
-        ContractReviewActivity.show(getActivity());
+      //  if (checkMemberStatus()){
+            ContractReviewActivity.show(getActivity());
+      //  }
     }
 
     @OnClick(R.id.im_formulation_contract)
     void formulationContract() {
-        ContractFormulationActivity.show(getActivity());
+//        if (checkMemberStatus()){
+            ContractFormulationActivity.show(getActivity());
+//        }
     }
 
     @OnClick(R.id.im_my_contract)
@@ -198,6 +251,8 @@ public class HomeFragment extends Fragment {
 
     @OnClick(R.id.im_law_home)
     void law_home() {
+        //https://www.baidu.com
+        //https://mp.weixin.qq.com/s/K1ENozD-wq83Hcz5zmJXmg
         WebActivity.show(getActivity(), "https://mp.weixin.qq.com/s/K1ENozD-wq83Hcz5zmJXmg");
     }
 }

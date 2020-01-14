@@ -69,6 +69,7 @@ public class PermissionFragment extends BottomSheetDialogFragment implements Eas
         if (!hasAll) {
             show(manager);
         }
+
         return hasAll;
     }
 
@@ -109,6 +110,8 @@ public class PermissionFragment extends BottomSheetDialogFragment implements Eas
                 Manifest.permission.ACCESS_NETWORK_STATE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION
         };
 
         if (EasyPermissions.hasPermissions(getContext(), perms)) {

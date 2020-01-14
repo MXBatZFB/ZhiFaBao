@@ -7,83 +7,72 @@ package com.zfb.zhifabao.common.factory.model.api.account;
  */
 public class UserInfo {
     //用户唯一登录的账号（即注册的手机号码）
-    private String phonenumber;
+    private String phone;
     //用户昵称
-    private String username;
+    private String nickname;
     //用户的唯一识别Id
-    private String userid;
+    private String userId;
     //头像链接
     private String portrait;
-    //是否是会员
-    private boolean isMember;
-
-    private String companyName;
-
+    //是否是会员//0:非会员 1:会员
+    private int memberType;
+    //登陆返回的token
     private String token;
+
 
     public UserInfo() {
 
     }
 
-    public UserInfo(String username, String portrait, boolean isMember) {
-        this.username = username;
+    public UserInfo(String phone, String nickname, String userId, String portrait, int memberType, String token) {
+        this.phone = phone;
+        this.nickname = nickname;
+        this.userId = userId;
         this.portrait = portrait;
-        this.isMember = isMember;
+        this.memberType = memberType;
+        this.token = token;
     }
 
-    public UserInfo(String phonenumber, String username, String portrait, boolean isMember, String companyName, String token, String userid) {
-        this.phonenumber = phonenumber;
-        this.username = username;
+    public UserInfo(String userName, String portrait, int memberType) {
+        this.nickname = userName;
         this.portrait = portrait;
-        this.isMember = isMember;
-        this.companyName = companyName;
-        this.token = token;
-        this.userid = userid;
+        this.memberType = memberType;
     }
 
     @Override
     public String toString() {
         return "UserInfo{" +
-                "phonenumber='" + phonenumber + '\'' +
-                ", username='" + username + '\'' +
-                ", userid='" + userid + '\'' +
+                "phone='" + phone + '\'' +
+                ", userName='" + nickname + '\'' +
+                ", userId='" + userId + '\'' +
                 ", portrait='" + portrait + '\'' +
-                ", isMember=" + isMember +
-                ", companyName='" + companyName + '\'' +
+                ", memberType=" + memberType +
                 ", token='" + token + '\'' +
                 '}';
     }
 
-    public String getCompanyName() {
-        return companyName;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public String getPhonenumber() {
-        return phonenumber;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setPhonenumber(String phonenumber) {
-        this.phonenumber = phonenumber;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getUserid() {
-        return userid;
-    }
-
-    public void setUserid(String userid) {
-        this.userid = userid;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getPortrait() {
@@ -94,12 +83,12 @@ public class UserInfo {
         this.portrait = portrait;
     }
 
-    public boolean isMember() {
-        return isMember;
+    public int getMemberType() {
+        return memberType;
     }
 
-    public void setMember(boolean member) {
-        isMember = member;
+    public void setMemberType(int memberType) {
+        this.memberType = memberType;
     }
 
     public String getToken() {

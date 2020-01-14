@@ -68,30 +68,38 @@
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteY="265dp" />
 
-        <net.qiujuer.genius.ui.widget.EditText
-            android:id="@+id/edit_companyName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/len_40"
-            android:layout_marginEnd="@dimen/len_40"
-            android:hint="请输入你的公司名称"
-            android:inputType="textMultiLine"
-            android:maxLength="64"
-            android:maxLines="2"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textColorHint="#D9DDE6"
-            android:textSize="@dimen/len_16"
-            app:gHintTitle="none"
-            app:gLineColor="@color/white_alpha_160"
-            app:gLineSize="1dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="265dp" />
+    <FrameLayout
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RadioGroup
+            android:id="@+id/rg_sex"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:id="@+id/rd_m"
+                android:textColor="@color/black"
+                android:text="男"
+                android:checked="true"
+                android:buttonTint="#007AF0"
+                android:backgroundTint="#007AF0"
+                android:layout_margin="@dimen/len_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <RadioButton
+                android:id="@+id/rd_n"
+                android:textColor="@color/black"
+                android:text="女"
+                android:buttonTint="@color/red_400"
+                android:layout_margin="@dimen/len_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RadioGroup>
+    </FrameLayout>
 
     </LinearLayout>
-
     <androidx.legacy.widget.Space
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -125,6 +133,4 @@
             app:gBackgroundLineSize="1dp"
             app:gForegroundColor="@color/white" />
     </FrameLayout>
-
-
 </LinearLayout>

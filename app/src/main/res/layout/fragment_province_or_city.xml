@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dialog_bg_for_bottom_fragment"
+    android:minHeight="500dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--city_or_province_selected_recyclerView-->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:background="@color/trans"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="0dp">
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/trans"
+            android:textAlignment="center"
+            app:layout_anchor="@+id/appBarLayout"
+            app:layout_anchorGravity="center"
+            app:titleTextAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            app:titleTextColor="@color/textPrimary">
+
+            <ImageView
+                android:id="@+id/im_dismiss"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="@dimen/len_8"
+                android:src="@drawable/ic_clear_black_24dp"
+                android:tint="#AAAAAA" />
+
+            <ImageView
+                android:id="@+id/im_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center_vertical"
+                android:src="@drawable/ic_arrow_back_black_24dp"
+                android:tint="#AAAAAA"
+                />
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:text="请选择"
+                android:textColor="@color/textPrimary"
+                android:textSize="@dimen/font_16" />
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        >
+        <TextView
+            android:layout_marginStart="@dimen/len_14"
+            android:id="@+id/tvProvince"
+            android:text="广东省"
+            android:textSize="@dimen/font_14"
+            android:visibility="gone"
+            android:textColor="#007AF0"
+            android:layout_marginBottom="@dimen/len_20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_marginStart="@dimen/len_16"
+            android:id="@+id/tv_select_title"
+            android:text="选择省份/地区"
+            android:textColor="#AAAAAA"
+            android:layout_marginBottom="@dimen/len_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/city_or_province_selected_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            />
+        <!--    <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/menu_regional_choice_recyclerView"
+                android:layout_gravity="end|center_vertical"
+                android:layout_width="@dimen/len_40"
+                android:layout_height="wrap_content"/>-->
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

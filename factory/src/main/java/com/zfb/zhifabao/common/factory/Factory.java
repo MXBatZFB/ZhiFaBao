@@ -4,6 +4,10 @@ import androidx.annotation.StringRes;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.raizlabs.android.dbflow.config.FlowConfig;
+import com.raizlabs.android.dbflow.config.FlowManager;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.zfb.zhifabao.common.app.Application;
 import com.zfb.zhifabao.common.factory.data.DataSource;
 import com.zfb.zhifabao.common.factory.persistence.Account;
@@ -21,7 +25,8 @@ public class Factory {
     private final Executor executor;
     // 全局的Gson
     private final Gson gson;
-
+    //全局的IWXAPI
+    private IWXAPI msgApi ;
 
     static {
         instance = new Factory();
@@ -36,10 +41,13 @@ public class Factory {
                 // 设置一个过滤器，数据库级别的Model不进行Json转换
               //  .setExclusionStrategies(new DBFlowExclusionStrategy())
                 .create();
+
+        msgApi = WXAPIFactory.createWXAPI(Application.getInstance(),null);
+        msgApi.registerApp("wx8b79994b9e69ab4c");
     }
 
     public static void setup() {
-        //FlowManager.init(new FlowConfig.Builder(app()).openDatabasesOnInit(true).build());
+        FlowManager.init(new FlowConfig.Builder(app()).openDatabasesOnInit(true).build());
         Account.load(app());
     }
 
@@ -71,6 +79,10 @@ public class Factory {
      */
     public static Gson getGson() {
         return instance.gson;
+    }
+
+    public static IWXAPI getApi(){
+        return  instance.msgApi;
     }
 
 

@@ -4,6 +4,8 @@ import android.content.Context;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import android.os.Bundle;
 import android.util.SparseArray;
 
 import com.zfb.zhifabao.common.Common;
@@ -52,13 +54,9 @@ public class NavHelper<T> implements Common.Constance {
         if (newTab.fragment == null) {
             Fragment fragment = Fragment.instantiate(mContext, newTab.clx.getName());
             newTab.fragment = fragment;
-//            if (newTab.extra.equals("MsgLoginFragment")) {
-//                Fragment tmp = Fragment.instantiate(mContext, RegisterFragment.class.getName());
-//                tabs.get(TO_REGISTER_FLAGS).fragment = tmp;
-//              //  ((MsgLoginFragment) fragment).setOnRegisterListener((CallbackOnRegister) tmp);
-//                transaction.add(containerId, tmp);
-//                transaction.detach(tmp);
-//            }
+            Bundle bundle = new Bundle();
+            bundle.putString(Common.Constance.LOOK_CONTRACT_FILE_URL, (String) newTab.extra);
+            fragment.setArguments(bundle);
             transaction.add(containerId, fragment);
         } else {
             transaction.attach(newTab.fragment);

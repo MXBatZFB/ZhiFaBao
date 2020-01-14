@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
@@ -20,16 +19,14 @@ import com.zfb.zhifabao.common.Common;
 import com.zfb.zhifabao.common.app.Application;
 import com.zfb.zhifabao.common.app.PresenterFragment;
 import com.zfb.zhifabao.common.factory.model.api.account.FractionResultModel;
+import com.zfb.zhifabao.common.factory.model.api.account.ResModel;
 import com.zfb.zhifabao.common.factory.model.api.assess.SubmitResultModel;
 import com.zfb.zhifabao.common.factory.model.api.consultation.TestBean;
-import com.zfb.zhifabao.common.factory.model.api.consultation.TestBean.QuestionsBean.QuestionBean.AnswersBean;
 import com.zfb.zhifabao.common.factory.presenter.assess.SubmitResultContract;
 import com.zfb.zhifabao.common.factory.presenter.assess.SubmitResultPresenter;
 import com.zfb.zhifabao.common.widget.cyclerview.RecyclerAdapter;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -63,13 +60,13 @@ public class AssessFragment extends PresenterFragment<SubmitResultContract.Prese
         mAdapter = new Adapter();
         rv_result.setLayoutManager(new LinearLayoutManager(getActivity()));
         rv_result.setAdapter(mAdapter);
-        mAdapter.replace(mTestBean.getQuestions().get(mNumber - 1).getQuestion().getAnswers());
-        mAdapter.setListener(new RecyclerAdapter.AdapterListenerImpl<AnswersBean>() {
+        mAdapter.replace(mTestBean.getTitleList().get(mNumber - 1).getOptionList());
+        mAdapter.setListener(new RecyclerAdapter.AdapterListenerImpl<TestBean.TitleListBean.OptionListBean>() {
             @Override
-            public void onItemClick(RecyclerAdapter.ViewHolder holder, AnswersBean answersBean, int position) {
-                List<AnswersBean> beans = mAdapter.getItems();
-                for (AnswersBean bean : beans) {
-                    if (bean.getAnswerContent().equals(answersBean.getAnswerContent())) {
+            public void onItemClick(RecyclerAdapter.ViewHolder holder, TestBean.TitleListBean.OptionListBean answersBean, int position) {
+                List<TestBean.TitleListBean.OptionListBean> beans = mAdapter.getItems();
+                for (TestBean.TitleListBean.OptionListBean bean : beans) {
+                    if (bean.getContent().equals(answersBean.getContent())) {
                         answersBean.setSelected(true);
                     } else {
                         bean.setSelected(false);
@@ -78,8 +75,8 @@ public class AssessFragment extends PresenterFragment<SubmitResultContract.Prese
                 mAdapter.notifyDataSetChanged();
             }
         });
-        tv_body.setText(mTestBean.getQuestions().get(mNumber - 1).getQuestion().getQuestionBody());
-        tv_number.setText(String.format("第%d，", mNumber) + String.format("总共%d题", mTestBean.getQuestions().size()));
+        tv_body.setText(mTestBean.getTitleList().get(mNumber - 1).getContent());
+        tv_number.setText(String.format("第%d，", mNumber) + String.format("总共%d题", mTestBean.getTitleList().size()));
 
         switch (mAssessType) {
             case ASSESS_TYPE_LAW:
@@ -114,34 +111,33 @@ public class AssessFragment extends PresenterFragment<SubmitResultContract.Prese
         boolean haveSelected = checkHaveSelected();
         if (haveSelected) {
             mNumber++;
-            if (mNumber <= mTestBean.getQuestions().size()) {
-                mAdapter.replace(mTestBean.getQuestions().get(mNumber - 1).getQuestion().getAnswers());
-                tv_body.setText(mTestBean.getQuestions().get(mNumber - 1).getQuestion().getQuestionBody());
-                tv_number.setText(String.format("第%d，", mNumber) + String.format("总共%d题", mTestBean.getQuestions().size()));
+            if (mNumber < mTestBean.getTitleList().size()) {
+                mAdapter.replace(mTestBean.getTitleList().get(mNumber - 1).getOptionList());
+                tv_body.setText(mTestBean.getTitleList().get(mNumber - 1).getContent());
+                tv_number.setText(String.format("第%d，", mNumber) + String.format("总共%d题", mTestBean.getTitleList().size()));
             } else {
                 btnSubmit.setText("提交");
                 btnSubmit.setEnabled(false);
-                List<TestBean.QuestionsBean> beans = mTestBean.getQuestions();
+                List<TestBean.TitleListBean> beans = mTestBean.getTitleList();
                 SubmitResultModel model = new SubmitResultModel();
+                model.setPaperId(mTestBean.getPaperId());
                 if (tvTitle.getText().toString().trim().equals("心理测试")) {
-                    model.setCeshitype("XinLiCeShi");
+                    model.setType("2");
                 } else if (tvTitle.getText().toString().trim().equals("职能测试")) {
-                    model.setCeshitype("BaoXianCongYeRenYuanCeShi");
+                    model.setType("1");
                 } else if (tvTitle.getText().toString().trim().equals("法律测试")) {
-                    model.setCeshitype("JiBenFaCeShi");
+                    model.setType("0");
                 }
-                List<SubmitResultModel.AnswersBean> beanList = new ArrayList<>();
-                for (TestBean.QuestionsBean questionsBean : beans) {
-                    SubmitResultModel.AnswersBean answersBean = new SubmitResultModel.AnswersBean();
-                    answersBean.setQuestionNumber(questionsBean.getQuestion().getQuestionNumber());
-                    for (AnswersBean bean : questionsBean.getQuestion().getAnswers()) {
+                List<String> beanList = new ArrayList<>();
+                for (TestBean.TitleListBean questionsBean : beans) {
+                    for (TestBean.TitleListBean.OptionListBean bean : questionsBean.getOptionList()) {
                         if (bean.isSelected()) {
-                            answersBean.setAnswerName(bean.getAnswerName());
+                          beanList.add(bean.getOptionId());
                         }
                     }
-                    beanList.add(answersBean);
                 }
-                model.setAnswers(beanList);
+                model.setOptionIdList(beanList);
+                model.setEmployee(new SubmitResultModel.EmployeeBean(mTestBean.getEmployeeBean().getIdCard(),mTestBean.getEmployeeBean().getName()));
                 mPresenter.submitResult(model);
             }
         } else {
@@ -151,8 +147,8 @@ public class AssessFragment extends PresenterFragment<SubmitResultContract.Prese
     }
 
     private boolean checkHaveSelected() {
-        List<AnswersBean> beans = mTestBean.getQuestions().get(mNumber - 1).getQuestion().getAnswers();
-        for (AnswersBean bean : beans) {
+        List<TestBean.TitleListBean.OptionListBean> beans = mTestBean.getTitleList().get(mNumber - 1).getOptionList();
+        for (TestBean.TitleListBean.OptionListBean bean : beans) {
             if (bean.isSelected()) {
                 return true;
             }
@@ -171,8 +167,8 @@ public class AssessFragment extends PresenterFragment<SubmitResultContract.Prese
     }
 
     @Override
-    public void onSubmitComplete(FractionResultModel model) {
-        Toast.makeText(getActivity(), model.getSum(), Toast.LENGTH_SHORT).show();
+    public void onSubmitComplete(ResModel model) {
+        Application.showToast(model.getMsg());
     }
 
     @Override
@@ -180,19 +176,19 @@ public class AssessFragment extends PresenterFragment<SubmitResultContract.Prese
         return new SubmitResultPresenter(this);
     }
 
-    class Adapter extends RecyclerAdapter<AnswersBean> {
+    class Adapter extends RecyclerAdapter<TestBean.TitleListBean.OptionListBean> {
         @Override
-        protected int getItemViewType(int viewtype, AnswersBean answersBean) {
+        protected int getItemViewType(int viewtype, TestBean.TitleListBean.OptionListBean answersBean) {
             return R.layout.cell_question_answer;
         }
 
         @Override
-        protected ViewHolder<AnswersBean> onCreateViewHolder(View root, int viewType) {
+        protected ViewHolder<TestBean.TitleListBean.OptionListBean> onCreateViewHolder(View root, int viewType) {
             return new TestQuestionHolder(root);
         }
     }
 
-    class TestQuestionHolder extends RecyclerAdapter.ViewHolder<AnswersBean> {
+    class TestQuestionHolder extends RecyclerAdapter.ViewHolder<TestBean.TitleListBean.OptionListBean> {
         TextView tvAnswer;
         ImageView imSelected;
 
@@ -203,8 +199,8 @@ public class AssessFragment extends PresenterFragment<SubmitResultContract.Prese
         }
 
         @Override
-        protected void onBind(AnswersBean answersBean) {
-            tvAnswer.setText(String.format(answersBean.getAnswerName() + "%s" + answersBean.getAnswerContent(), "："));
+        protected void onBind(TestBean.TitleListBean.OptionListBean answersBean) {
+            tvAnswer.setText(String.format(answersBean.getAnswer() + "%s" + answersBean.getContent(), "："));
             if (answersBean.isSelected()) {
                 tvAnswer.setPressed(true);
                 tvAnswer.setTextColor(Color.parseColor("#007AF0"));

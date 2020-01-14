@@ -12,8 +12,6 @@ buildscript {
         //noinspection GradleDependency
         classpath 'com.jakewharton:butterknife-gradle-plugin:10.1.0'
 
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 }
 
@@ -49,4 +47,9 @@ ext{
 
     dbflowVersion = "4.0.0-beta7"
     easyPMVersion = "0.3.0"
+
+    jpushVersion = "3.5.4"
+    jcoreVersion="2.2.6"
+
+   // dbflowVersion = "4.0.0-beta7"
 }

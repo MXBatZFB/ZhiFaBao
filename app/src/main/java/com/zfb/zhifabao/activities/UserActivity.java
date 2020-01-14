@@ -12,7 +12,7 @@ import android.view.WindowManager;
 import com.zfb.zhifabao.R;
 import com.zfb.zhifabao.common.app.Activity;
 import com.zfb.zhifabao.common.app.Fragment;
-import com.zfb.zhifabao.flags.user.UpdateFragment;
+import com.zfb.zhifabao.flags.user.CompletUserInfoFragment;
 
 public class UserActivity extends Activity {
     private Fragment curFragment;
@@ -31,7 +31,7 @@ public class UserActivity extends Activity {
     protected void initWidget() {
         super.initWidget();
         setStatuTrans();
-        curFragment = new UpdateFragment();
+        curFragment = new CompletUserInfoFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.lay_user_container, curFragment).commit();
     }
 

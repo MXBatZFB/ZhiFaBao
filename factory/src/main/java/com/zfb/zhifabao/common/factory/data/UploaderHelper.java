@@ -22,22 +22,21 @@ import retrofit2.Response;
  * 邮箱：mdl_android@163.com
  */
 public class UploaderHelper {
-    public static void update(final String userName, String companyName, String portrait, final DataSource.Callback<ResModel<UserInfo>> callback) {
+    public static void update(final String userName, String sex, String portrait, final DataSource.Callback<ResModel<UserInfo>> callback) {
         RemoteService service = NetWork.getRetrofit()
                 .create(RemoteService.class);
         File file = new File(portrait);
         if (Account.isLogin()) {
-            RequestBody phoneBody = RequestBody.create(MediaType.parse("multipart/form-data"), Account.getAccount());
+
             RequestBody userNameBody = RequestBody.create(MediaType.parse("multipart/form-data"), userName);
-            RequestBody companyNameBody = RequestBody.create(MediaType.parse("multipart/form-data"), companyName);
-            RequestBody tokenBody = RequestBody.create(MediaType.parse("multipart/form-data"), Account.getToken());
+            RequestBody sexNameBody = RequestBody.create(MediaType.parse("multipart/form-data"), sex);
             RequestBody portraitBody = RequestBody.create(MediaType.parse("image/jpg"), file);
-            MultipartBody.Part portraitMultipartBody = MultipartBody.Part.createFormData("portraitpic", file.getName(), portraitBody);
-            Call<ResModel<UserInfo>> call = service.upUserInfo(tokenBody, phoneBody, userNameBody, companyNameBody, portraitMultipartBody);
+            MultipartBody.Part portraitMultipartBody = MultipartBody.Part.createFormData("portraitFile", file.getName(), portraitBody);
+            Call<ResModel<UserInfo>> call = service.upUserInfo( userNameBody, sexNameBody, portraitMultipartBody);
             call.enqueue(new Callback<ResModel<UserInfo>>() {
                 @Override
                 public void onResponse(Call<ResModel<UserInfo>> call, Response<ResModel<UserInfo>> response) {
-                    UserInfo userInfo = response.body().getResult();
+                    UserInfo userInfo = response.body().getData();
                     Account.completeInfo(userInfo);
                     callback.onDataLoaded(response.body());
                 }

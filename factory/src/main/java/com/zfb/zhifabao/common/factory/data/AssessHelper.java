@@ -22,16 +22,15 @@ import retrofit2.Response;
  */
 public class AssessHelper {
 
-    public static void getAssessQuestion(String ceshitype, final DataSource.Callback callback) {
+    public static void getAssessQuestion(String type, final DataSource.Callback callback) {
         RemoteService service = NetWork.getRetrofit()
                 .create(RemoteService.class);
-        AssessModel model = new AssessModel(ceshitype);
-        Call<ResModel<TestBean>> call = service.assessGet(model);
+        Call<ResModel<TestBean>> call = service.assessGet(type);
 
         call.enqueue(new Callback<ResModel<TestBean>>() {
             @Override
             public void onResponse(Call<ResModel<TestBean>> call, Response<ResModel<TestBean>> response) {
-                TestBean testBean = response.body().getResult();
+                TestBean testBean = response.body().getData();
                 callback.onDataLoaded(testBean);
             }
 
@@ -51,14 +50,13 @@ public class AssessHelper {
         call.enqueue(new Callback<ResModel<FractionResultModel>>() {
             @Override
             public void onResponse(Call<ResModel<FractionResultModel>> call, Response<ResModel<FractionResultModel>> response) {
-                Log.e("delong", "onResponse>>>>>>>>>>" + response.isSuccessful());
+                Log.e("delong", "submitAssessResult>>>>>>>>>>" + response.isSuccessful());
                 callback.onDataLoaded(response.body());
             }
 
             @Override
             public void onFailure(Call<ResModel<FractionResultModel>> call, Throwable t) {
                 Log.e("delong", "onFailure>>>>>>>>>>" + t.getMessage());
-                t.printStackTrace();
                 callback.onDtaNotAvailable(Factory.app().getString(R.string.data_network_error));
                 call.cancel();
             }

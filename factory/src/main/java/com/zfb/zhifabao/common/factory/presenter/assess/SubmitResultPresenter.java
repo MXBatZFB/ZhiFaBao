@@ -26,7 +26,7 @@ public class SubmitResultPresenter extends BasePresenter<SubmitResultContract.Vi
 
     @Override
     public void onDataLoaded(ResModel<FractionResultModel> result) {
-        getmView().onSubmitComplete(result.getResult());
+        getmView().onSubmitComplete(result);
     }
 
     @Override

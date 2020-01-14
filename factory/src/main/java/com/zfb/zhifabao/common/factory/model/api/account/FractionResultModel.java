@@ -6,36 +6,46 @@ package com.zfb.zhifabao.common.factory.model.api.account;
  */
 public class FractionResultModel {
 
-    private String sum;
+    /**
+     * type : 2
+     * description : 散漫，爱玩，富于幻想。聪明机灵，待人热情，爱交朋友，但对朋友没有严格的选择标准。事业心较差，更善于享受生活，意志力和耐心都较差，我行我素。有较好的异性缘，但对爱情不够坚持认真，容易妥协。没有财产观念。
+     * score : 4
+     */
 
-    private String describe;
-
-    public FractionResultModel(String sum, String describe) {
-        this.sum = sum;
-        this.describe = describe;
-    }
+    private String type;
+    private String description;
+    private String score;
 
     @Override
     public String toString() {
         return "FractionResultModel{" +
-                "sum='" + sum + '\'' +
-                ", describe='" + describe + '\'' +
+                "type=" + type +
+                ", description='" + description + '\'' +
+                ", score=" + score +
                 '}';
     }
 
-    public String getDescribe() {
-        return describe;
+    public String getType() {
+        return type;
     }
 
-    public void setDescribe(String describe) {
-        this.describe = describe;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public String getSum() {
-        return sum;
+    public String getDescription() {
+        return description;
     }
 
-    public void setSum(String sum) {
-        this.sum = sum;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getScore() {
+        return score;
+    }
+
+    public void setScore(String score) {
+        this.score = score;
     }
 }

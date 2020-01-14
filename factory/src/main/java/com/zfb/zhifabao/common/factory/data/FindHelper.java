@@ -25,21 +25,21 @@ public class FindHelper {
     public static void getFindList(String token, final DataSource.Callback<List<FindContent>> callback) {
         RemoteService service = NetWork.getRetrofit()
                 .create(RemoteService.class);
-        Call<ResModel<List<FindContent>>> call = service.findGetFindcontent(new GetFindContentModel(token));
-        call.enqueue(new Callback<ResModel<List<FindContent>>>() {
-            @Override
-            public void onResponse(Call<ResModel<List<FindContent>>> call, Response<ResModel<List<FindContent>>> response) {
-                List<FindContent> list = response.body().getResult();
-                Log.e("delong", ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + list.toString());
-                callback.onDataLoaded(list);
-            }
+       // Call<ResModel<List<FindContent>>> call = service.findGetFindcontent(new GetFindContentModel(token));
+//        call.enqueue(new Callback<ResModel<List<FindContent>>>() {
+//            @Override
+//            public void onResponse(Call<ResModel<List<FindContent>>> call, Response<ResModel<List<FindContent>>> response) {
+//                List<FindContent> list = response.body().getData();
+//                Log.e("delong", ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + list.toString());
+//                callback.onDataLoaded(list);
+//           }
 
-            @Override
-            public void onFailure(Call<ResModel<List<FindContent>>> call, Throwable t) {
-                callback.onDtaNotAvailable(Factory.app().getString(R.string.data_network_error));
-                call.cancel();
-            }
-        });
+//            @Override
+//            public void onFailure(Call<ResModel<List<FindContent>>> call, Throwable t) {
+//                callback.onDtaNotAvailable(Factory.app().getString(R.string.data_network_error));
+//                call.cancel();
+//            }
+//        });
     }
 
 }

@@ -21,4 +21,6 @@
 
     <color name="maskChatHeader">@color/black_alpha_48</color>
     <color name="navIconTintLight">@color/white_alpha_240</color>
+
+    <color name="color_f5f5f5">#f5f5f5</color>
 </resources>

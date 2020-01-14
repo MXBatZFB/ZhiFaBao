@@ -24,7 +24,6 @@ public class MsgGetCodePresenter extends BasePresenter<MsgGetCodeContract.View>
         super(mView);
     }
 
-
     /**
      * 检查用户输入的号码是否合法
      *
@@ -72,10 +71,10 @@ public class MsgGetCodePresenter extends BasePresenter<MsgGetCodeContract.View>
         Run.onUiAsync(new Action() {
             @Override
             public void call() {
-                if (result.getCode() == 6208) {
+                if (result.getMsg().contains("success")) {
                     view.getCodeSuccess();
                 } else {
-                    view.showError(result.getMessage());
+                    view.showError(result.getMsg());
                 }
             }
         });

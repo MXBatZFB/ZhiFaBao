@@ -33,9 +33,7 @@ public class FindFragment extends PresenterFragment<FindContract.Presenter> impl
     RecyclerView mRecyclerView;
     private FindAdapter mAdapter;
     private LinearLayoutManager manager;
-
     public FindFragment() {
-
     }
 
     @Override

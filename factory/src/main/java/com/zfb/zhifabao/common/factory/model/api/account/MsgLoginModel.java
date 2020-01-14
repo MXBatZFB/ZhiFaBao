@@ -5,35 +5,46 @@ package com.zfb.zhifabao.common.factory.model.api.account;
  * 邮箱：mdl_android@163.com
  */
 public class MsgLoginModel {
-    private String phonenumber;
-    private String smscode;
+    private String phone;
+    private String code;
+    private String jPushRegisterId;
 
-    public MsgLoginModel(String phonenumber, String smscode) {
-        this.phonenumber = phonenumber;
-        this.smscode = smscode;
+    public MsgLoginModel(String phone, String code,String jPushRegisterId) {
+        this.phone = phone;
+        this.code = code;
+        this.jPushRegisterId = jPushRegisterId;
     }
 
     @Override
     public String toString() {
         return "MsgLoginModel{" +
-                "phonenumber='" + phonenumber + '\'' +
-                ", smscode='" + smscode + '\'' +
+                "phone='" + phone + '\'' +
+                ", code='" + code + '\'' +
+                ", jPushRegisterId='" + jPushRegisterId + '\'' +
                 '}';
     }
 
-    public String getPhonenumber() {
-        return phonenumber;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPhonenumber(String phonenumber) {
-        this.phonenumber = phonenumber;
+    public String getjPushRegisterId() {
+        return jPushRegisterId;
     }
 
-    public String getSmscode() {
-        return smscode;
+    public void setjPushRegisterId(String jPushRegisterId) {
+        this.jPushRegisterId = jPushRegisterId;
     }
 
-    public void setSmscode(String smscode) {
-        this.smscode = smscode;
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

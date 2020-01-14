@@ -45,7 +45,6 @@ public class AssessActivity extends Activity implements CommonTrigger {
     /**
      * 这是状态栏透明的方法
      */
-
     private void setStatuTrans() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();

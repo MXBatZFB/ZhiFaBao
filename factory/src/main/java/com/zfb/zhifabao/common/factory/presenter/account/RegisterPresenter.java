@@ -48,7 +48,7 @@ public class RegisterPresenter extends BasePresenter<RegisterContract.View>
             AccountHelper.getRegisterCode(phone, new DataSource.Callback<ResModel>() {
                 @Override
                 public void onDataLoaded(ResModel result) {
-                    getmView().showError(result.getMessage());
+                    getmView().registerSuccess();
                 }
 
                 @Override
@@ -91,9 +91,9 @@ public class RegisterPresenter extends BasePresenter<RegisterContract.View>
 
         if (result.getCode() == 6205) {
             getmView().registerSuccess();
-            getmView().showError(result.getMessage());
+            getmView().showError(result.getMsg());
         } else {
-            getmView().showError(result.getMessage());
+            getmView().showError(result.getMsg());
         }
 
     }
